@@ -1,72 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-
+  <dict>
     <key>PayloadContent</key>
     <array>
+      <dict>
+        <key>DNSSettings</key>
         <dict>
-
-            <key>DNSSettings</key>
-            <dict>
-                <key>DNSProtocol</key>
-                <string>TLS</string>
-
-                <key>ServerAddresses</key>
-                <array>
-                    <string>45.90.28.0</string>
-                    <string>45.90.30.0</string>
-                </array>
-
-                <key>ServerName</key>
-                <string>fcc3c7.dns.nextdns.io</string>
-            </dict>
-
-            <key>PayloadDisplayName</key>
-            <string>LocketGold DNS</string>
-
-            <key>PayloadIdentifier</key>
-            <string>com.quang06.dns.locket</string>
-
-            <key>PayloadType</key>
-            <string>com.apple.dnsSettings.managed</string>
-
-            <key>PayloadUUID</key>
-            <string>9C0F3A64-7A2E-4C8F-B1B2-0D4B9F6C5A11</string>
-
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-
+          <key>DNSProtocol</key>
+          <string>HTTPS</string>
+          <key>ServerAddresses</key>
+          <array>
+            <string>45.90.28.0</string>
+            <string>45.90.30.0</string>
+            <string>2a07:a8c0::</string>
+            <string>2a07:a8c1::</string>
+          </array>
+          <key>ServerName</key>
+          <string>782aa4.dns.nextdns.io</string>
+          <key>ServerURL</key>
+          <string>https://dns.nextdns.io/782aa4</string>
         </dict>
+        <key>OnDemandRules</key>
+        <array>
+          <dict>
+            <key>Action</key>
+            <string>Connect</string>
+            <key>InterfaceTypeMatch</key>
+            <string>WiFi</string>
+          </dict>
+          <dict>
+            <key>Action</key>
+            <string>Connect</string>
+            <key>InterfaceTypeMatch</key>
+            <string>Cellular</string>
+          </dict>
+          <dict>
+            <key>Action</key>
+            <string>Connect</string>
+          </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>Configures device to use Locket Gold Encrypted DNS over HTTPS</string>
+        <key>PayloadDisplayName</key>
+        <string>Locket Gold DNS over HTTPS</string>
+        <key>PayloadIdentifier</key>
+        <string>iznow.hiuchuyn.lk.dns.managed</string>
+        <key>PayloadType</key>
+        <string>com.apple.dnsSettings.managed</string>
+        <key>PayloadUUID</key>
+        <string>f6915459-9c02-4a7a-80d3-b9e8f6fd1ed7</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>ProhibitDisablement</key>
+        <false/>
+      </dict>
     </array>
-
+    <key>PayloadDescription</key>
+    <string> 
+    LocketGold DNS Profile
+    Website: quang06.id.vn
+    Created by Quang 
+    </string>
     <key>PayloadDisplayName</key>
     <string>LocketGold DNS (No VPN)</string>
-
-    <key>PayloadDescription</key>
-    <string>
-LocketGold DNS Profile
-Website: quang06.id.vn
-Created by Quang
-    </string>
-
     <key>PayloadIdentifier</key>
-    <string>com.quang06.profile.locketdns</string>
-
-    <key>PayloadOrganization</key>
-    <string>Quang06</string>
-
+    <string>iznow.hiuchuyn.lk.config</string>
     <key>PayloadRemovalDisallowed</key>
     <false/>
-
     <key>PayloadType</key>
     <string>Configuration</string>
-
     <key>PayloadUUID</key>
-    <string>2B6E2E7F-AC6B-4E42-8D17-6D2E4BFA91A5</string>
-
+    <string>44dd7775-d19e-4716-8a72-ed2990139cdb</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
-
-</dict>
+  </dict>
 </plist>
