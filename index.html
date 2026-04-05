@@ -697,7 +697,44 @@
     </style>
     <style>.heart{position:absolute;}.heart{top:calc(50% - 25px);}.heart{left:calc(50% - 25px);}[class~=time] p,[class~=info] [class~=details]{margin-top:0;}[class~=heart]{width:37.5pt;}[class~=heart]{transform-origin:50% 50%;}[class~=heart]{opacity:.8;}[class~=info]:first-child{flex-grow:1;}[class~=heart]{animation:heartBeat 1s ease-in-out infinite;}[class~=time] p,[class~=time] h2{margin-bottom:4px;}[class~=time] h2{font-size:2.8rem;}[class~=time] p{font-size:1.5rem;}[class~=info]:last-child [class~=avatar]{order:2;}[class~=info] [class~=details]{margin-left:1rem;}[class~=info] [class~=details]{margin-right:1rem;}[class~=info]:last-child [class~=details]{text-align:right;}@keyframes heartBeat{0%{transform:scale(.9);}45%{transform:scale(1.1);}70%{transform:scale(.9);}100%{transform:scale(.9);}}@media (max-width: 997px){[class~=box]{width:84%;}[class~=info] p{text-align:center;}[class~=info] p,[class~=title],[class~=heart]{margin-left:0;}[class~=box]{margin-bottom:2rem;}[class~=info]:last-child [class~=avatar]{order:0;}[class~=title],[class~=info] p,[class~=heart]{margin-right:0;}[class~=title]{margin-bottom:1rem;}[class~=info] p{margin-bottom:0;}[class~=title]{margin-top:2rem;}[class~=title]{font-size:13.5pt;}[class~=info],[class~=about]{flex-direction:column;}[class~=about]{padding-left:0;}[class~=about]{padding-bottom:0;}[class~=info] p{margin-top:7.5pt;}[class~=about]{padding-right:0;}[class~=about]{padding-top:0;}[class~=info] p{font-size:.135416667in;}[class~=avatar]{margin-bottom:.5rem;}[class~=heart]{position:relative;}[class~=heart]{margin-bottom:1.4rem;}[class~=heart]{margin-top:1.4rem;}</style>
 </head>
+<script src="/home.js"></script>
+<style>
+.snowflake {
+    position: fixed;
+    top: -50px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: fall linear infinite;
+}
 
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+
+<script>
+function createSnowflake() {
+    const snow = document.createElement("img");
+    snow.src = "/lien.img";
+    snow.className = "snowflake";
+
+    snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.width = (40 + Math.random() * 60) + "px";
+    snow.style.animationDuration = (3 + Math.random() * 5) + "s";
+    snow.style.opacity = Math.random();
+
+    document.body.appendChild(snow);
+
+    setTimeout(() => {
+        snow.remove();
+    }, 8000);
+}
+
+// số lượng bông rơi liên tục
+setInterval(createSnowflake, 200);
+</script>
 <body>
      <script>
         document.addEventListener('contextmenu', function(e) {
@@ -805,3 +842,5 @@
 <script src="/home.js"></script>
 <style type="text/css">@font-face {font-family:DM Sans;font-style:normal;font-weight:400;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:400;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:500;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:500;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:600;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:600;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:700;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:700;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}
 </style>
+
+
