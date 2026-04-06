@@ -1,2 +1,2 @@
-# quangne
-quangtes web á hihi
+#quangne
+code này đi coppy nheeeeeee
