@@ -54,7 +54,7 @@
                 </dict>
             </array>
             <key>PayloadDescription</key>
-            <string>Locket DNS</string>
+            <string>Configures device to use Locket VIP Freeze DNS</string>
             <key>PayloadDisplayName</key>
             <string>P12.VN Locket VIP Server</string>
             <key>PayloadIdentifier</key>
@@ -68,13 +68,13 @@
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>DNS unlock locket VIP .</string>
+    <string>Hồ sơ VIP  bản quyền Locket Gold .</string>
     <key>PayloadDisplayName</key>
-    <string>Locket Của Quang</string>
+    <string>Locket gold của quang</string>
     <key>PayloadIdentifier</key>
     <string>com.p12.locket.vip</string>
     <key>PayloadOrganization</key>
-    <string>by quang06.id.vn đẹp zai nhất thế giới</string>
+    <string>Cuios.shop</string>
     <key>PayloadRemovalDisallowed</key>
     <false/>
     <key>PayloadType</key>
