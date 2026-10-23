@@ -1,318 +1,844 @@
+<!--ĐỊT MẸ MÀY,MÒ LÀM ĐÉO GÌ?-->
 <!doctype html>
-<html lang="vi">
+<script>
+    var isclick = false;
+</script>
+<html lang="en" onclick="isclick = true">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ôn tập Lịch sử Đảng — Quiz Master</title>
-<style>
-:root{
-  --bg:#080b14;--panel:#111827;--panel2:#151d2e;--line:#263247;
-  --text:#f7f9ff;--muted:#9aa7bd;--accent:#7c5cff;--accent2:#21d4a3;
-  --danger:#ff5571;--warn:#ffc857;--shadow:0 20px 70px rgba(0,0,0,.35);
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'>
+    <link href="1user.png" rel="shortcut icon" type="image/x-icon">
+    <meta content="1user.png" property="og:image">
+    <meta content="Powered by QuangAnh" name="description"/>
+    <meta content="Quang Anh" property="og:title"/>
+    <meta content="Powered by QuangAnh" property="og:description"/>
+    <meta content="1user.png" property="og:image:secure_url">
+    <meta content="" property="og:image"/>
+    <meta content="quanganh" property="profile:username"/>
+    <meta content="summary" name="twitter:card"/>
+    <meta content="Quang Anh" name="twitter:title"/>
+    <meta content="1user.png" property="twitter:image">
+    <link as="image" href="/1" rel="preload">
+    <title>Contact me - Quang06.id.vn
+    </title>
+
+        <script src="/sweetalert.min.js"></script>
+    <script>
+        document.onkeydown = function(e) {
+  // Vô hiệu hóa phím F12
+  if (e.keyCode === 123) {
+    return false;
+  }
+  // Vô hiệu hóa Ctrl+Shift+I (hoặc Cmd+Opt+I trên Mac)
+  if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+    return false;
+  }
+  // Vô hiệu hóa Ctrl+Shift+J (hoặc Cmd+Opt+J trên Mac)
+  if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+    return false;
+  }
+  // Vô hiệu hóa Ctrl+U (xem mã nguồn)
+  if (e.ctrlKey && e.keyCode === 85) {
+    return false;
+    
+  }
 }
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:
-radial-gradient(circle at 15% 10%,rgba(124,92,255,.18),transparent 32%),
-radial-gradient(circle at 85% 0%,rgba(33,212,163,.12),transparent 30%),var(--bg);color:var(--text)}
-button,input,select{font:inherit}
-button{cursor:pointer}
-.app{min-height:100vh}
-.topbar{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(18px);position:sticky;top:0;z-index:10;background:rgba(8,11,20,.78)}
-.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.3px}
-.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#4f8cff);box-shadow:0 10px 30px rgba(124,92,255,.3)}
-.top-actions{display:flex;gap:8px}
-.icon-btn{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);width:40px;height:40px;border-radius:12px}
-.container{max-width:1180px;margin:auto;padding:34px 20px 60px}
-.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:stretch}
-.card{background:linear-gradient(180deg,rgba(21,29,46,.94),rgba(15,22,36,.94));border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
-.hero-main{padding:38px;position:relative;overflow:hidden}
-.hero-main:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;right:-80px;top:-90px;background:radial-gradient(circle,rgba(124,92,255,.32),transparent 65%)}
-.kicker{color:#a99cff;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
-h1{font-size:clamp(34px,5vw,62px);line-height:.98;margin:12px 0 18px;letter-spacing:-2.5px;max-width:700px}
-.hero-main p{color:var(--muted);font-size:16px;line-height:1.65;max-width:680px}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
-.stat{padding:11px 14px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07)}
-.stat b{font-size:18px;margin-right:5px}
-.setup{padding:28px}
-.setup h2{margin:0 0 20px;font-size:21px}
-.field{margin-bottom:15px}
-.field label{display:block;color:var(--muted);font-size:13px;font-weight:700;margin-bottom:8px}
-select,input{width:100%;background:#0b1220;border:1px solid var(--line);color:var(--text);padding:13px 14px;border-radius:13px;outline:none}
-select:focus,input:focus{border-color:var(--accent)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.check{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:14px;margin:12px 0}
-.check input{width:auto}
-.primary,.secondary,.danger{border:0;border-radius:14px;padding:13px 17px;font-weight:800}
-.primary{color:white;background:linear-gradient(135deg,var(--accent),#4d7cff);box-shadow:0 12px 28px rgba(92,83,255,.22)}
-.secondary{color:var(--text);background:rgba(255,255,255,.06);border:1px solid var(--line)}
-.danger{color:white;background:rgba(255,85,113,.15);border:1px solid rgba(255,85,113,.35)}
-.primary:hover,.secondary:hover,.danger:hover,.icon-btn:hover{transform:translateY(-1px)}
-.section{margin-top:24px;padding:25px}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:16px}
-.section-head h2{margin:0;font-size:20px}.section-head span{color:var(--muted);font-size:13px}
-.chapter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.chapter{padding:18px;border-radius:17px;border:1px solid var(--line);background:rgba(255,255,255,.025)}
-.chapter b{display:block;font-size:18px;margin-bottom:6px}.chapter span{color:var(--muted);font-size:13px}
-.toolbar{display:flex;gap:10px;margin-bottom:15px}.toolbar input{flex:1}
-.quiz-wrap{max-width:980px;margin:auto}
-.quiz-head{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:14px}
-.progress-box{flex:1}.progress-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:7px}.progress{height:8px;border-radius:99px;background:#1a2435;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;transition:width .25s}
-.pill{padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-weight:800;white-space:nowrap}
-.question-card{padding:30px}
-.q-tag{color:#9d91ff;font-weight:800;font-size:13px}
-.question{font-size:clamp(22px,3vw,31px);line-height:1.35;margin:12px 0 24px;letter-spacing:-.5px}
-.options{display:grid;gap:12px}
-.option{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;padding:17px;border-radius:17px;border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--text);transition:.15s}
-.option:hover:not(.locked){border-color:#6655d8;background:rgba(124,92,255,.08)}
-.letter{width:34px;height:34px;min-width:34px;border-radius:10px;display:grid;place-items:center;background:#1a2435;color:#b9c3d7;font-weight:900}
-.option.correct{border-color:rgba(33,212,163,.7);background:rgba(33,212,163,.09)}.option.correct .letter{background:var(--accent2);color:#06120e}
-.option.wrong{border-color:rgba(255,85,113,.7);background:rgba(255,85,113,.08)}.option.wrong .letter{background:var(--danger);color:white}
-.option-text{line-height:1.55;padding-top:4px}.locked{cursor:default}
-.feedback{margin-top:16px;padding:15px 17px;border-radius:15px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted);line-height:1.55}
-.feedback strong{color:var(--text)}
-.quiz-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
-kbd{border:1px solid var(--line);background:#0c1423;padding:2px 7px;border-radius:6px;color:#b8c2d4}
-.result{text-align:center;padding:40px}
-.score-ring{width:170px;height:170px;border-radius:50%;margin:5px auto 25px;display:grid;place-items:center;background:conic-gradient(var(--accent) var(--deg),#1a2435 0)}
-.score-ring:before{content:"";position:absolute;width:136px;height:136px;border-radius:50%;background:#101827}
-.score-inner{position:relative;z-index:1}.score-inner b{display:block;font-size:40px}.score-inner span{color:var(--muted)}
-.result-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:22px}
-.review{margin-top:22px;text-align:left}.review-item{padding:16px;border:1px solid var(--line);border-radius:15px;margin-top:10px;background:rgba(255,255,255,.025)}
-.review-item .r-q{font-weight:750;line-height:1.45}.review-item .r-a{color:var(--accent2);font-size:14px;margin-top:7px}
-.library-grid{display:grid;gap:10px}.lib-item{padding:15px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.025)}
-.lib-item b{display:block;margin-bottom:7px}.lib-item span{color:var(--muted);font-size:13px}
-.hidden{display:none!important}.muted{color:var(--muted)}
-.footer{text-align:center;color:#66738b;font-size:12px;margin-top:28px}
-@media(max-width:850px){.hero{grid-template-columns:1fr}.chapter-grid{grid-template-columns:1fr}.topbar{padding:0 15px}.container{padding:22px 13px 45px}.hero-main,.setup,.question-card{padding:22px}.row{grid-template-columns:1fr}h1{letter-spacing:-1.5px}.quiz-head{align-items:stretch}.quiz-head .pill{align-self:center}}
-</style>
+    </script>
+    <style>
+        
+        body, html {
+            -ms-scroll-chaining: none;
+            overscroll-behavior: none;
+            margin: 0;
+            padding: 0
+        }
+
+        .min-h-full {
+            min-height: 100vh
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .flex-both-center {
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap
+        }
+
+        .flex-h-center {
+            display: flex;
+            justify-content: center
+        }
+
+        .flex-dir-c {
+            flex-direction: column
+        }
+
+        .mt-8 {
+            margin-top: 12px
+        }
+
+        .mt-16 {
+            margin-top: 16px
+        }
+
+        .mt-24 {
+            margin-top: 24px
+        }
+
+        .mt-32 {
+            margin-top: 32px
+        }
+
+        .mt-36 {
+            margin-top: 48px
+        }
+
+        .m-auto {
+            margin: auto
+        }
+
+        .ml-6 {
+            margin-left: 6px
+        }
+
+        .py-10 {
+            padding: 10px
+        }
+
+        .ln-h-22 {
+            line-height: 22px
+        }
+
+        .text-fs-16 {
+            font-size: 16px
+        }
+
+        .page-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            height: 100vh;
+            width: 100vw
+        }
+
+        .background-overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0
+        }
+
+        .page-overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, .1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: 100
+        }
+
+        .page-overlay-btn {
+            text-decoration: none;
+            font-family: Inter, sans-serif;
+            background: transparent;
+            padding: 10px 30px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            display: inline-block;
+            cursor: pointer
+        }
+
+        .page-overlay-title {
+            font-size: 30px;
+            font-family: sans-serif
+        }
+
+        .page-overlay-text {
+            font-size: 18px
+        }
+
+        .page-image {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            -o-object-fit: cover;
+            object-fit: cover
+        }
+
+        .display-image {
+            width: 96px;
+            height: 96px;
+            display: block;
+            border-radius: 50%;
+            -o-object-fit: cover;
+            object-fit: cover
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .page-title {
+            margin-bottom: 0
+        }
+
+        .page-bioline {
+            font-weight: 500
+        }
+
+        .page-full-wrap {
+            width: 680px;
+            z-index: 10;
+            padding-bottom: 176px
+        }
+
+        .page-item-wrap {
+            transition: transform .15s cubic-bezier(.17, .67, .29, 2.71) 0s
+        }
+
+        .page-item-wrap.show-embed {
+            border-radius: 30px;
+            transition: unset;
+            transform: unset
+        }
+
+        .page-item-wrap.show-embed:hover {
+            transform: unset
+        }
+
+        .page-item-wrap.show-embed:hover .page-item:after, .page-item-wrap.show-embed:hover .page-item:before {
+            -webkit-animation: unset;
+            animation: unset
+        }
+
+        .show-embed-item {
+            overflow: hidden;
+            transition: all .3s ease-in-out
+        }
+
+        .page-item-wrap.show-embed .show-embed-item {
+            overflow: visible
+        }
+
+        .embed-ind-arrow-icon {
+            transform: rotate(-90deg)
+        }
+
+        .page-item-wrap.show-embed .embed-ind-arrow-icon {
+            transform: rotate(0deg)
+        }
+
+        .page-item {
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1
+        }
+
+        .page-social-class {
+            display: block;
+            cursor: pointer;
+            margin: 0 12px 12px
+        }
+
+        .page-social-class svg {
+            width: 28px;
+            height: 28px
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .link-each-image {
+            width: 43px;
+            height: 43px;
+            position: absolute;
+            left: 9px;
+            -o-object-fit: cover;
+            object-fit: cover
+        }
+
+        .page-logo {
+            position: absolute;
+            bottom: 32px;
+            left: calc(50% - 15px)
+        }
+
+        .page-logo:hover svg .bl-logo-br {
+            opacity: 1
+        }
+
+        .rounded-md {
+            border-radius: 8px
+        }
+
+        .close-embed {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: .7
+        }
+
+        .embed-wrap {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            height: 100%
+        }
+
+        .embed-ind-arrow {
+            position: absolute;
+            right: 24px;
+            height: 14px;
+            top: calc(50% - 7px);
+            margin-bottom: 16px
+        }
+
+        .embed-ind-arrow-icon {
+            transition: all .4s ease-in-out
+        }
+
+        .close-embed:hover {
+            opacity: 1
+        }
+
+        .cursor-pointer {
+            cursor: pointer
+        }
+
+        .page-item-each {
+            text-decoration: none;
+            overflow: hidden;
+            z-index: 10;
+            box-sizing: border-box
+        }
+
+        .item-title {
+            width: 55%;
+            word-break: break-word
+        }
+
+        .social-icon-anchor {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0
+        }
+
+        .page-social-class:hover {
+            transition: all .1s ease-in-out;
+            transform: scale(1.1)
+        }
+
+        .page-item-title {
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        .embed-wrap-inside {
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 10px;
+            height: 100%;
+            overflow: hidden
+        }
+
+        .embed-wrap-inside iframe {
+            width: auto;
+            min-width: 500px
+        }
+
+        .embed-wrap-inside {
+            position: relative
+        }
+
+        .embed-wrap-inside:after {
+            content: "";
+            position: absolute;
+            height: 85%;
+            width: 495px;
+            border: 10px solid #fff;
+            transition-property: border;
+            transition-duration: .2s;
+            pointer-events: none
+        }
+
+        @media (max-width: 768px) {
+            .page-full-wrap {
+                width: 90%
+            }
+
+            .embed-wrap-inside iframe {
+                width: 100%;
+                min-width: unset
+            }
+
+            .page-overlay-title {
+                font-size: 24px;
+                margin: 16px 0
+            }
+
+            .embed-wrap-inside:after {
+                width: 93%
+            }
+        }
+
+        @media (max-width: 400px) {
+            .embed-wrap-inside:after {
+                width: 90%
+            }
+        }
+
+
+        .page-bg {
+            background: #E0EDCD;
+        }
+
+        .display-image {
+            border-radius: 50%;
+            box-shadow: 0px 6px 14px -6px rgba(24, 39, 75, 0.12), 0px 10px 32px -4px rgba(24, 39, 75, 0.1), inset 0px 0px 2px 1px rgba(24, 39, 75, 0.05);
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .page-bioline {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .page-item-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .page-item-each {
+            color: #FFFFFF;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: none;
+            border-radius: 30px;
+
+            min-height: 60px;
+        }
+
+        .page-item-wrap {
+            margin: 16px 0;
+        }
+
+
+        .page-item-wrap {
+
+        }
+
+        .page-item {
+            border: 0px solid #FFFFFF;
+            background: #007034;
+            border-radius: 30px;
+
+        }
+
+
+        .embed-wrap iframe, .embed-wrap-inside {
+            border-radius: 0px 0px 22px 22px;
+        }
+
+        .link-each-image, .page-item-wrap {
+            border-radius: 30px;
+        }
+
+        .page-text-font {
+            font-family: 'DM Sans', sans-serif;
+            text-transform: none;
+
+        }
+
+        .page-text-color {
+            color: #0D0C22;
+        }
+
+        .social-icon-fill path, .social-icon-fill circle, .social-icon-fill rect {
+            fill: #000000;
+        }
+
+        .page-overlay-btn {
+            border: 2px solid #0D0C22;
+        }
+
+
+        .page-item-wrap .page-item {
+            animation: colorchange_btn 12s alternate infinite forwards;
+            -moz-animation: colorchange_btn 12s alternate infinite forwards;
+            -webkit-animation: colorchange_btn 12s alternate infinite forwards;
+        }
+
+        .page-item-wrap {
+            transform: scale(1);
+            transition: all .15s cubic-bezier(0.17, 0.67, 0.29, 2.71);
+        }
+
+        .page-item-wrap:hover {
+            transform: scale(1.02);
+            transition: all .15s cubic-bezier(0.17, 0.67, 0.29, 2.71);
+        }
+
+        .page-bg {
+            animation: colorchange_bg 12s alternate infinite forwards;
+            -moz-animation: colorchange_bg 12s alternate infinite forwards;
+            -webkit-animation: colorchange_bg 12s alternate infinite forwards;
+        }
+
+        .social-icon-fill path, .social-icon-fill circle, .social-icon-fill rect, .page-text-color,
+        a:visited svg.social-icon-fill path, a:visited svg.social-icon-fill circle, a:visited svg.social-icon-fill rect {
+            animation: colorchange_txt 12s alternate infinite forwards;
+            -moz-animation: colorchange_txt 12s alternate infinite forwards;
+            -webkit-animation: colorchange_txt 12s alternate infinite forwards;
+        }
+
+        @keyframes colorchange_btn {
+            0% {
+                background: #007034;
+            }
+            25% {
+                background: #F55727;
+            }
+            50% {
+                background: #E01B3C;
+            }
+            75% {
+                background: #6A18C7;
+            }
+            100% {
+                background: #3126D1;
+            }
+        }
+
+        @keyframes colorchange_bg {
+            0% {
+                background: #E0EDCD;
+            }
+            25% {
+                background: #FCECBB;
+            }
+            50% {
+                background: #FAE1E6;
+            }
+            75% {
+                background: #E0D8E8;
+            }
+            100% {
+                background: #DCE7F5;
+            }
+        }
+
+        @keyframes colorchange_txt {
+            0% {
+                fill: #007034;
+                color: #007034;
+            }
+            25% {
+                fill: #F55727;
+                color: #F55727;
+            }
+            50% {
+                fill: #E01B3C;
+                color: #E01B3C;
+            }
+            75% {
+                fill: #6A18C7;
+                color: #6A18C7;
+            }
+            100% {
+                fill: #3126D1;
+                color: #3126D1;
+            }
+        }
+
+        @-moz-keyframes colorchange_btn {
+            0% {
+                background: #007034;
+            }
+            25% {
+                background: #F55727;
+            }
+            50% {
+                background: #E01B3C;
+            }
+            75% {
+                background: #6A18C7;
+            }
+            100% {
+                background: #3126D1;
+            }
+        }
+
+        @-moz-keyframes colorchange_bg {
+            0% {
+                background: #E0EDCD;
+            }
+            25% {
+                background: #FCECBB;
+            }
+            50% {
+                background: #FAE1E6;
+            }
+            75% {
+                background: #E0D8E8;
+            }
+            100% {
+                background: #DCE7F5;
+            }
+        }
+
+        @-moz-keyframes colorchange_txt {
+            0% {
+                fill: #007034;
+                color: #007034;
+            }
+            25% {
+                fill: #F55727;
+                color: #F55727;
+            }
+            50% {
+                fill: #E01B3C;
+                color: #E01B3C;
+            }
+            75% {
+                fill: #6A18C7;
+                color: #6A18C7;
+            }
+            100% {
+                fill: #3126D1;
+                color: #3126D1;
+            }
+        }
+
+        @-webkit-keyframes colorchange_btn {
+            0% {
+                background: #007034;
+            }
+            25% {
+                background: #F55727;
+            }
+            50% {
+                background: #E01B3C;
+            }
+            75% {
+                background: #6A18C7;
+            }
+            100% {
+                background: #3126D1;
+            }
+        }
+
+        @-webkit-keyframes colorchange_bg {
+            0% {
+                background: #E0EDCD;
+            }
+            25% {
+                background: #FCECBB;
+            }
+            50% {
+                background: #FAE1E6;
+            }
+            75% {
+                background: #E0D8E8;
+            }
+            100% {
+                background: #DCE7F5;
+            }
+        }
+
+        @-webkit-keyframes colorchange_txt {
+            0% {
+                fill: #007034;
+                color: #007034;
+            }
+            25% {
+                fill: #F55727;
+                color: #F55727;
+            }
+            50% {
+                fill: #E01B3C;
+                color: #E01B3C;
+            }
+            75% {
+                fill: #6A18C7;
+                color: #6A18C7;
+            }
+            100% {
+                fill: #3126D1;
+                color: #3126D1;
+            }
+        }
+    </style>
+    <style>.heart{position:absolute;}.heart{top:calc(50% - 25px);}.heart{left:calc(50% - 25px);}[class~=time] p,[class~=info] [class~=details]{margin-top:0;}[class~=heart]{width:37.5pt;}[class~=heart]{transform-origin:50% 50%;}[class~=heart]{opacity:.8;}[class~=info]:first-child{flex-grow:1;}[class~=heart]{animation:heartBeat 1s ease-in-out infinite;}[class~=time] p,[class~=time] h2{margin-bottom:4px;}[class~=time] h2{font-size:2.8rem;}[class~=time] p{font-size:1.5rem;}[class~=info]:last-child [class~=avatar]{order:2;}[class~=info] [class~=details]{margin-left:1rem;}[class~=info] [class~=details]{margin-right:1rem;}[class~=info]:last-child [class~=details]{text-align:right;}@keyframes heartBeat{0%{transform:scale(.9);}45%{transform:scale(1.1);}70%{transform:scale(.9);}100%{transform:scale(.9);}}@media (max-width: 997px){[class~=box]{width:84%;}[class~=info] p{text-align:center;}[class~=info] p,[class~=title],[class~=heart]{margin-left:0;}[class~=box]{margin-bottom:2rem;}[class~=info]:last-child [class~=avatar]{order:0;}[class~=title],[class~=info] p,[class~=heart]{margin-right:0;}[class~=title]{margin-bottom:1rem;}[class~=info] p{margin-bottom:0;}[class~=title]{margin-top:2rem;}[class~=title]{font-size:13.5pt;}[class~=info],[class~=about]{flex-direction:column;}[class~=about]{padding-left:0;}[class~=about]{padding-bottom:0;}[class~=info] p{margin-top:7.5pt;}[class~=about]{padding-right:0;}[class~=about]{padding-top:0;}[class~=info] p{font-size:.135416667in;}[class~=avatar]{margin-bottom:.5rem;}[class~=heart]{position:relative;}[class~=heart]{margin-bottom:1.4rem;}[class~=heart]{margin-top:1.4rem;}</style>
 </head>
-<body>
-<div class="app">
-<header class="topbar">
-  <div class="brand"><div class="logo">✓</div><span>Quiz Master · Lịch sử Đảng</span></div>
-  <div class="top-actions">
-    <button class="icon-btn" id="themeBtn" title="Đổi giao diện">☾</button>
-    <button class="icon-btn" id="resetBtn" title="Xóa thống kê">↺</button>
-  </div>
-</header>
+<script src="/home.js"></script>
+<style>
+.snowflake {
+    position: fixed;
+    top: -50px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: fall linear infinite;
+}
 
-<main class="container">
-<section id="home">
-  <div class="hero">
-    <div class="card hero-main">
-      <div class="kicker">Study mode · 225 câu hỏi</div>
-      <h1>Ôn tập nhanh.<br>Nhớ lâu hơn.</h1>
-      <p>Bộ trắc nghiệm được dựng trực tiếp từ tài liệu ôn tập bạn cung cấp. Chọn chương, số câu, bật/tắt hẹn giờ và bắt đầu làm ngay.</p>
-      <div class="stats">
-        <div class="stat"><b id="statQuestions">225</b> câu</div>
-        <div class="stat"><b>3</b> chương</div>
-        <div class="stat"><b id="statAnswered">0</b> đã làm</div>
-        <div class="stat"><b id="statBest">0%</b> kỷ lục</div>
-      </div>
-    </div>
-    <div class="card setup">
-      <h2>⚡ Tạo bài kiểm tra</h2>
-      <div class="field"><label>Chương</label><select id="chapterSelect"><option value="all">Tất cả chương</option></select></div>
-      <div class="row">
-    <div class="field"><label>Số câu</label><select id="countSelect"><option value="10">10</option><option value="20" selected>20</option><option value="30">30</option><option value="50">50</option><option value="all">Tất cả</option></select></div>
-    <div class="field"><label>Thứ tự</label><select id="orderSelect"><option value="random" selected>Ngẫu nhiên</option><option value="original">Theo tài liệu</option></select></div>
-      </div>
-      <label class="check"><input type="checkbox" id="shuffleOptions" checked> Xáo trộn đáp án</label>
-      <label class="check"><input type="checkbox" id="timerToggle"> Hẹn giờ <span class="muted">(30 giây/câu)</span></label>
-      <button class="primary" style="width:100%;margin-top:7px" id="startBtn">Bắt đầu làm bài →</button>
-    </div>
-  </div>
-
-  <section class="card section">
-    <div class="section-head"><div><h2>📚 Ngân hàng câu hỏi</h2><span>Toàn bộ nội dung từ tài liệu nguồn</span></div></div>
-    <div class="toolbar"><input id="searchInput" placeholder="Tìm câu hỏi, từ khóa..."></div>
-    <div id="library" class="library-grid"></div>
-  </section>
-
-  <div class="footer">Nguồn câu hỏi: tài liệu “LỊCH SỬ ĐẢNG – BỘ CÂU HỎI ÔN TẬP”.</div>
-</section>
-
-<section id="quiz" class="quiz-wrap hidden">
-  <div class="quiz-head">
-    <div class="progress-box">
-      <div class="progress-meta"><span id="progressText">Câu 1/20</span><span id="scoreText">0 đúng</span></div>
-      <div class="progress"><i id="progressBar" style="width:5%"></i></div>
-    </div>
-    <div class="pill" id="timer">∞</div>
-  </div>
-  <div class="card question-card">
-    <div class="q-tag" id="qTag">CHƯƠNG 1 · CÂU 1</div>
-    <div class="question" id="questionText"></div>
-    <div class="options" id="options"></div>
-    <div id="feedback" class="feedback hidden"></div>
-    <div class="quiz-actions">
-      <button class="secondary" id="quitBtn">← Thoát</button>
-      <button class="primary" id="nextBtn" disabled>Câu tiếp →</button>
-    </div>
-  </div>
-  <div class="footer">Phím <kbd>1</kbd>–<kbd>4</kbd> để chọn đáp án · <kbd>Enter</kbd> để sang câu tiếp</div>
-</section>
-
-<section id="result" class="quiz-wrap hidden">
-  <div class="card result">
-    <div class="kicker">HOÀN THÀNH</div>
-    <h1 style="font-size:42px;margin-bottom:12px">Kết quả của bạn</h1>
-    <div class="score-ring" id="scoreRing"><div class="score-inner"><b id="finalPct">0%</b><span id="finalScore">0/0</span></div></div>
-    <div id="resultMsg" class="muted"></div>
-    <div class="result-actions">
-      <button class="primary" id="retryBtn">Làm lại bài này</button>
-      <button class="secondary" id="wrongBtn">Luyện câu sai</button>
-      <button class="secondary" id="homeBtn">Về trang chủ</button>
-    </div>
-    <div id="review" class="review"></div>
-  </div>
-</section>
-</main>
-</div>
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
 
 <script>
-const QUESTIONS = [{"id":1,"chapter":1,"num":1,"question":"Ai chủ trì Hội nghị Ban Chấp hành Trung ương Đảng tháng 11 - 1940?","options":["Trường Chinh","Lê Hồng Phong","Nguyễn Văn Cừ","Nguyễn Ái Quốc"],"answer":0},{"id":2,"chapter":1,"num":2,"question":"Ai là người viết tác phẩm “Tự chỉ trích”?","options":["Nguyễn Văn Cừ","Lê Hồng Phong","Phan Đăng Lưu","Hà Huy Tập"],"answer":0},{"id":3,"chapter":1,"num":3,"question":"Ai là Tổng Bí thư đầu tiên của Đảng?","options":["Lê Hồng Phong","Trần Phú","Trần Văn Cung","Hồ Chí Minh"],"answer":1},{"id":4,"chapter":1,"num":4,"question":"Ban chấp hành Trung ương Đảng xác định chuẩn bị khởi nghĩa vũ trang là nhiệm vụ trung tâm tại Hội nghị nào?","options":["Hội nghị họp tháng 11 - 1940","Hội nghị họp tháng 5 – 1941","Hội nghị họp tháng 10 - 1930","Hội nghị họp tháng 11 - 1939"],"answer":1},{"id":5,"chapter":1,"num":5,"question":"Bản Chỉ thị Nhật, Pháp bắn nhau và hành động của chúng ta phản ánh nội dung của Hội nghị nào?","options":["Hội nghị Ban Thường vụ Trung ương Đảng họp tháng 2 - 1943","Hội nghị Ban Thường vụ Trung ương Đảng họp tháng 3 - 1945","Hội nghị Ban chấp hành Trung ương Đảng họp tháng 5 - 1941","Hội nghị quân sự cách mạng Bắc kỳ họp tháng 4 – 1945"],"answer":1},{"id":6,"chapter":1,"num":6,"question":"Ban lãnh đạo của Đảng ở nước ngoài do ai đứng đầu?","options":["Hà Huy Tập","Lê Hồng Phong","Trường Chinh","Nguyễn Văn Cừ"],"answer":1},{"id":7,"chapter":1,"num":7,"question":"Ban Thường vụ Trung ương Đảng ra Quyết nghị chấp nhận Đông Dương cộng sản liên đoàn là một bộ phận của Đảng Cộng sản Việt Nam vào thời gian nào?","options":["Ngày 20 - 2 - 1930","Ngày 24 - 2 - 1930","Ngày 22 - 3 – 1930","Ngày 22 - 2 - 1930"],"answer":1},{"id":8,"chapter":1,"num":8,"question":"Cách mạng Tháng Tám thành công để lại cho Đảng và nhân dân Việt Nam những bài học kinh nghiệm quý báu trong những lĩnh vực gì?","options":["Cả ba đáp án đều đúng","Về xây dựng lực lượng và xây dựng Đảng","Về phương pháp cách mạng","Về chỉ đạo chiến lược"],"answer":0},{"id":9,"chapter":1,"num":9,"question":"Cao trào cách mạng Việt Nam năm 1930 bắt đầu bị đế quốc Pháp đàn áp khốc liệt từ khi nào?","options":["Cuối năm 1930","Cuối năm 1931","Đầu năm 1930","Đầu năm 1931"],"answer":0},{"id":10,"chapter":1,"num":10,"question":"Chi bộ cộng sản đầu tiên ở Việt Nam được thành lập khi nào?","options":["Tháng 2 năm 1929","Tháng 3 năm 1929","Tháng 4 năm 1929","Tháng 5 năm 1929"],"answer":1},{"id":11,"chapter":1,"num":11,"question":"Chỉ thị “Nhật - Pháp bắn nhau và hành động của chúng ta” ra đời khi nào?","options":["Ngày 12 - 3 – 1946","Ngày 12 - 3 - 1945","Ngày 10 - 3 - 1846","Ngày 9 - 3 - 1945"],"answer":1},{"id":12,"chapter":1,"num":12,"question":"Chiến tranh thế giới II bùng nổ vào thời gian nào?","options":["1939","1940","1938","1937"],"answer":0},{"id":13,"chapter":1,"num":13,"question":"Chính quyền Xô viết ở một số vùng nông thôn Nghệ - Tĩnh được thành lập trong khoảng thời gian nào?","options":["Cuối năm 1930","Cuối năm 1931","Đầu năm 1931","Đầu năm 1930"],"answer":0},{"id":14,"chapter":1,"num":14,"question":"Cho biết đối tượng của cách mạng trong giai đoạn 1936 - 1939","options":["Địa chủ phong kiến.","Đế quốc và phong kiến.","Bọn đế quốc xâm lược.","Một bộ phận đế quốc xâm lược và tay sai."],"answer":3},{"id":15,"chapter":1,"num":15,"question":"Chủ trương điều chỉnh chiến lược cách mạng của Đảng được bắt đầu từ Hội nghị Trung ương nào?","options":["Hội nghị Trung ương 8","Hội nghị Trung ương 7","Hội nghị Trung ương 9","Hội nghị Trung ương 6"],"answer":3},{"id":16,"chapter":1,"num":16,"question":"Cuộc khởi nghĩa Bắc Sơn nổ ra ngày nào?","options":["Ngày 27 - 9 - 1940","Ngày 23 - 11 - 1940","Ngày 22 - 9 - 1940","Ngày 20 - 11 – 1940"],"answer":0},{"id":17,"chapter":1,"num":17,"question":"Cương lĩnh chính trị đầu tiên của Đảng khẳng định phương pháp tiến hành cách mạng giải phóng dân tộc là?","options":["Đấu tranh theo xu hướng cải cách","Đấu tranh theo xu hướng bạo động","Đấu tranh theo phương pháp bạo lực cách mạng của quần chúng","Đấu tranh vũ trang theo lối manh động, ám sát cá nhân"],"answer":2},{"id":18,"chapter":1,"num":18,"question":"Cương lĩnh đầu tiên của Đảng đã xác định mục tiêu chiến lược của cách mạng Việt Nam là gì?","options":["Cách mạng tư sản dân quyền - phản đế và điền địa - lập chính quyền của công nông bằng hình thức Xô viết, để dự bị điều kiện đi tới cách mạng xã hội chủ nghĩa.","Làm tư sản dân quyền cách mạng và thổ địa cách mạng để đi tới xã hội cộng sản.","Xây dựng một nước Việt Nam dân giầu nước mạnh xã hội công bằng, dân chủ và văn minh.","Cả a và b."],"answer":1},{"id":19,"chapter":1,"num":19,"question":"Dưới chế độ thực dân phong kiến, giai cấp nông dân Việt Nam có yêu cầu bức thiết nhất là gì?","options":["Được giảm tô, giảm tức","Ruộng đất","Quyền bình đẳng nam, nữ","Độc lập dân tộc"],"answer":3},{"id":20,"chapter":1,"num":20,"question":"Đặc điểm ra đời của giai cấp công nhân Việt Nam như thế nào?","options":["Phần lớn xuất thân từ nông dân.","Cả a, b, c","Chịu sự áp bức và bóc lột của đế quốc, phong kiến và tư sản","Ra đời trước giai cấp tư sản, trong cuộc khai thác thuộc địa lần thứ nhất của thực dân Pháp."],"answer":1},{"id":21,"chapter":1,"num":21,"question":"Đại biểu các tổ chức cộng sản nào đã tham dự Hội nghị thành lập Đảng đầu năm 1930?","options":["An Nam cộng sản Đảng và Đông Dương cộng sản liên đoàn","Đông Dương cộng sản Đảng và Đông Dương cộng sản liên đoàn","Đông Dương cộng sản Đảng, An Nam cộng sản Đảng và Đông Dương cộng sản liên đoàn","Đông Dương cộng sản Đảng và An Nam cộng sản Đảng"],"answer":3},{"id":22,"chapter":1,"num":22,"question":"Đáp án nào dưới đây không phải là tên các tổ chức cộng sản ra đời vào nửa cuối năm 1929 tại Việt Nam?","options":["An Nam Cộng sản Đảng","Đông Dương Cộng sản Đảng","An Nam Cộng sản Liên đoàn","Đông Dương Cộng sản Liên đoàn"],"answer":2},{"id":23,"chapter":1,"num":23,"question":"Đâu không phải là hạn chế của Luận cương chính trị tháng 10/1930?","options":["Không nêu rõ mâu thuẫn chủ yếu của xã hội Việt Nam thuộc địa","Không nhấn mạnh nhiệm vụ giải phóng dân tộc, mà nặng về đấu tranh giai cấp và cách mạng ruộng đất","Không đề ra được một chiến lược liên minh dân tộc và giai cấp rộng rãi","Chưa đưa ra được phương pháp cách mạng là con đường “võ trang bạo động”"],"answer":3},{"id":24,"chapter":1,"num":24,"question":"Đâu không phải là ý nghĩa của Cách mạng Tháng Tám năm 1945?","options":["Cách mạng Tháng Tám năm 1945 đã đập tan xiềng xích nô lệ của chủ nghĩa đế quốc trong gần một thế kỷ, chấm dứt sự tồn tại của chế độ quân chủ chuyên chế hàng nghìn năm.","Thắng lợi của Cách mạng Tháng Tám mở ra kỷ nguyên mới trong tiến trình lịch sử dân tộc, bước vào giai đoạn chủ nghĩa tư bản và tiến tới chủ nghĩa xã hội.","Với thắng lợi của Cách mạng Tháng Tám, nhân dân Việt Nam từ thân phận nô lệ bước lên địa vị người chủ đất nước, có quyền quyết định vận mệnh của mình.","Nhân dân Việt Nam vươn lên cùng các dân tộc trên thế giới đấu tranh cho những mục tiêu cao cả của thời đại là hòa bình, độc lập dân tộc, dân chủ và tiến bộ xã hội."],"answer":1},{"id":25,"chapter":1,"num":25,"question":"Đâu là cuốn sách chính trị đầu tiên của cách mạng Việt Nam?","options":["Đời sống công nhân","Nhân đạo","Đường cách mệnh","Người cùng khổ"],"answer":2},{"id":26,"chapter":1,"num":26,"question":"Đâu là nguyên nhân thất bại của các phong trào yêu nước của nhân dân Việt Nam trước khi có Đảng:","options":["Cả ba đáp án đều đúng","Chưa có một tổ chức vững mạnh để tập hợp, giác ngộ và lãnh đạo toàn dân tộc","Chưa xác định được phương pháp đấu tranh thích hợp để đánh đổ kẻ thù","Thiếu đường lối chính trị đúng đắn để giải quyết triệt để những mâu thuẫn cơ bản, chủ yếu của xã hội"],"answer":0},{"id":27,"chapter":1,"num":27,"question":"Điều kiện nào tạo ra khả năng đấu tranh công khai hợp pháp cho phong trào cách mạng Đông Dương giai đoạn 1936 - 1939?","options":["Chủ trương chuyển hướng chiến lược cách mạng thế giới của Quốc tế Cộng sản","Sự xuất hiện chủ nghĩa phát xít và nguy cơ chiến tranh thế giới","Tất cả các điều kiện trên","Mặt trận nhân dân Pháp lên cầm quyền"],"answer":3},{"id":28,"chapter":1,"num":28,"question":"Đội Việt Nam tuyên truyền giải phóng quân lúc đầu được thành lập có bao nhiêu chiến sĩ?","options":["36","34","35","33"],"answer":1},{"id":29,"chapter":1,"num":29,"question":"Đông Dương Cộng sản Đảng và An nam Cộng sản Đảng được ra đời từ tổ chức tiền thân nào?","options":["Hội Việt Nam cách mạng Thanh niên","Tân Việt cách mạng Đảng","Các nội dung đều đúng","Việt Nam cách mạng đồng chí Hội"],"answer":0},{"id":30,"chapter":1,"num":30,"question":"Được sự chỉ đạo của Quốc tế Cộng sản, ban lãnh đạo của Đảng ở nước ngoài được thành lập vào năm nào?","options":["Năm 1933","Năm 1935","Năm 1932","Năm 1934"],"answer":3},{"id":31,"chapter":1,"num":31,"question":"Hình thức tổ chức và đấu tranh trong giai đoạn 1936 - 1939?","options":["Nửa công khai, nửa hợp pháp.","Tất cả các hình thức trên.","Bí mật, bất hợp pháp.","Công khai, hợp pháp."],"answer":1},{"id":32,"chapter":1,"num":32,"question":"Hội Liên hiệp thuộc địa được thành lập vào năm nào?","options":["1920","1924","1923","1921"],"answer":3},{"id":33,"chapter":1,"num":33,"question":"Hội nghị Ban chấp hành Trung ương Đảng họp tháng 7 - 1936 chủ trương thành lập mặt trận nào?","options":["Mặt trận nhân dân phản đế Đông Dương","Mặt trận phản đế đồng minh Đông Dương.","Mặt trận dân tộc thống nhất phản đế Đông Dương.","Mặt trận dân chủ Đông Dương."],"answer":0},{"id":34,"chapter":1,"num":34,"question":"Hội nghị Hợp nhất thành lập Đảng CSVN (3 - 2 - 1930) thông qua các văn kiện nào sau đây:","options":["Chánh cương vắn tắt","Cả  3 đáp án trên","Điều lệ vắn tắt và Chương trình vắn tắt","Sách lược vắn tắt"],"answer":1},{"id":35,"chapter":1,"num":35,"question":"Hội nghị lần thứ nhất Ban chấp hành Trung ương 10 - 1930 do ai chủ trì?","options":["Hồ Chí Minh","Trần Phú","Trường Chinh","Lê Duẩn"],"answer":1},{"id":36,"chapter":1,"num":36,"question":"Hội nghị lần thứ Tám của Ban chấp hành Trung ương Đảng (5 - 1941) cử ai làm Tổng bí thư?","options":["Lê Duẩn","Trường Chinh","Nguyễn Ái Quốc","Võ Văn Tần"],"answer":1},{"id":37,"chapter":1,"num":37,"question":"Hội nghị nào của Ban chấp hành Trung ương Đảng chủ trương tạm gác các khẩu hiệu “độc lập dân tộc” và “cách mạng ruộng đất”","options":["Hội nghị họp tháng 10 - 1930","Hội nghị họp tháng 5 – 1941","Hội nghị họp tháng 11 - 1939","Hội nghị họp tháng 7 - 1936"],"answer":3},{"id":38,"chapter":1,"num":38,"question":"Hội nghị nào của Ban chấp hành Trung ương Đảng nhấn mạnh giải phóng dân tộc là nhiệm vụ bức thiết nhất?","options":["Hội nghị họp tháng 11 - 1939","Hội nghị họp tháng 11 - 1940","Hội nghị họp tháng 5 – 1941","Hội nghị họp tháng 10 - 1930"],"answer":2},{"id":39,"chapter":1,"num":39,"question":"Hội nghị nào đã quyết định phát động toàn dân nổi dậy tổng khởi nghĩa giành chính quyền?","options":["Hội nghị toàn quốc của Đảng","Hội nghị Ban thường vụ Trung ương Đảng","Hội nghị Tổng bộ Việt Minh","Hội nghị Ban chấp hành Trung ương Đảng"],"answer":0},{"id":40,"chapter":1,"num":40,"question":"Hội nghị toàn quốc của Đảng Cộng sản Đông Dương họp ở Tân Trào trong thời gian nào?","options":["15 - 19 tháng 8 - 1941","15 - 19 tháng 8 - 1945","13 - 15 tháng 8 - 1945","21 - 23 tháng 8 – 1945"],"answer":2},{"id":41,"chapter":1,"num":41,"question":"Hội nghị Trung ương 6 (11 - 1939) họp tại đâu?","options":["Tân Trào (Tuyên Quang)","Đình Bảng (Bắc Ninh)","Bà Điểm (Gia Định)","Thái Nguyên"],"answer":2},{"id":42,"chapter":1,"num":42,"question":"Hội nghị Trung ương lần thứ 7 của Đảng họp tại Đình Bảng (Bắc Ninh) vào thời gian nào?","options":["Tháng 4 – 1941","Tháng 11 - 1940","Tháng 5 - 1941","Tháng 11 - 1939"],"answer":1},{"id":43,"chapter":1,"num":43,"question":"Hội Việt Nam Cách mạng Thanh niên thực hiện chủ trương “vô sản hoá” khi nào?","options":["Cuối năm 1928 đầu năm 1929","Cuối năm 1927 đầu năm 1928","Cuối năm 1929 đầu năm 1930","Cuối năm 1926 đầu năm 1927"],"answer":0},{"id":44,"chapter":1,"num":44,"question":"Khẩu hiệu nào sau được nêu ra trong Cao trào kháng Nhật cứu nước?","options":["Giải quyết nạn đói","Đánh đuổi phát xít Nhật - Pháp","Chống nhổ lúa trồng đay","Đánh đuổi phát xít Nhật"],"answer":1},{"id":45,"chapter":1,"num":45,"question":"Khi nào phong trào công nhân Việt Nam hoàn toàn trở thành một phong trào tự giác?","options":["Năm 1929 (sự ra đời ba tổ chức cộng sản)","Năm 1925 (cuộc bãi công Ba Son)","Năm 1920 (tổ chức công hội ở Sài Gòn được thành lập)","Năm 1930 (Đảng Cộng sản Việt Nam ra đời)"],"answer":3},{"id":46,"chapter":1,"num":46,"question":"Luận cương Chính trị do đồng chí Trần Phú khởi thảo ra đời vào thời gian nào?","options":["Tháng 10 - 1930","Tháng 9 - 1930","Tháng 2 - 1930","Tháng 8 – 1930"],"answer":0},{"id":47,"chapter":1,"num":47,"question":"Lý do Nguyễn Ái Quốc đã triệu tập và chủ trì Hội nghị thành lập Đảng đầu năm 1930?","options":["Được sự uỷ nhiệm của Quốc tế Cộng sản","Nhận được chỉ thị của Quốc tế Cộng sản","Các tổ chức cộng sản trong nước đề nghị","Sự chủ động của Nguyễn Ái Quốc"],"answer":3},{"id":48,"chapter":1,"num":48,"question":"Mặt trận Việt Nam độc lập đồng minh (Việt Minh) được thành lập năm nào?","options":["1943","1941","1942","1940"],"answer":1},{"id":49,"chapter":1,"num":49,"question":"Mâu thuẫn cơ bản và chủ yếu ở Việt Nam đầu thế kỷ XX là mâu thuẫn nào?","options":["Mâu thuẫn giữa giai cấp công nhân với giai cấp tư sản","Mâu thuẫn giữa giai cấp nông dân với giai cấp địa chủ phong kiến","Mâu thuẫn giữa công nhân và nông dân với đế quốc và phong kiến","Mâu thuẫn giữa dân tộc Việt Nam với đế quốc xâm lược và tay sai của chúng"],"answer":3},{"id":50,"chapter":1,"num":50,"question":"Mục tiêu cụ thể trước mắt của cao trào cách mạng 1936 - 1939 là gì?","options":["Các quyền dân chủ đơn sơ.","Ruộng đất cho dân cày.","Tất cả các mục tiêu trên.","Độc lập dân tộc."],"answer":0},{"id":51,"chapter":1,"num":51,"question":"Ngày Nam Kỳ khởi nghĩa là ngày nào?","options":["Ngày 27 - 9 - 1940","Ngày 10 - 1 – 1941","Ngày 13 - 1 - 1941","Ngày 23 - 11 - 1940"],"answer":3},{"id":52,"chapter":1,"num":52,"question":"Nguyễn Ái Quốc đã đọc Sơ thảo lần thứ nhất Luận cương về vấn đề dân tộc và vấn đề thuộc địa khi nào? ở đâu?","options":["8 - 1920 - Trung Quốc","7 - 1920 - Pháp","7 - 1920 - Quảng Châu (Trung Quốc)","7 - 1920 - Liên Xô"],"answer":1},{"id":53,"chapter":1,"num":53,"question":"Nguyễn Ái Quốc khẳng định con đường cách mạng của các dân tộc bị áp bức là:","options":["giải phóng giai cấp vô sản ở “chính quốc”","chỉ cần giải phóng dân tộc, không cần giải phóng giai cấp","giải phóng giai cấp, giải phóng dân tộc","chỉ cần giải phóng giai cấp, không cần giải phóng dân tộc"],"answer":2},{"id":54,"chapter":1,"num":54,"question":"Nguyễn Ái Quốc từ Liên Xô về Quảng Châu (Trung Quốc) vào thời gian nào?","options":["Tháng 12 năm 1924","Tháng 11 năm 1924","Tháng 12 năm 1925","Tháng 10 năm 1924"],"answer":1},{"id":55,"chapter":1,"num":55,"question":"Nguyên nhân chủ yếu và có ý nghĩa quyết định sự bùng nổ và phát triển của cao trào cách mạng Việt Nam năm 1930?","options":["Chính sách khủng bố trắng của đế quốc Pháp","Chính sách tăng cường vơ vét bóc lột của đế quốc Pháp","Sự lãnh đạo của Đảng Cộng sản Việt Nam","Tác động tiêu cực của cuộc khủng hoảng kinh tế 1929 - 1933"],"answer":2},{"id":56,"chapter":1,"num":56,"question":"Nhân dân ta phải tiến hành tổng khởi nghĩa giành chính quyền trước khi quân Đồnh minh vào Đông Dương vì:","options":["Tất cả các lý do trên","Đó là lúc so sánh lực lượng có lợi nhất đối với cách mạng","Quân Đồng minh có thể dựng ra một chính quyền trái với ý chí và nguyện vọng của nhân dân ta","Đó là lúc kẻ thù cũ đã ngã gục nhưng kẻ thù mới chưa kịp đến"],"answer":0},{"id":57,"chapter":1,"num":57,"question":"Phát xít Nhật vào xâm lược nước ta tháng, năm nào?","options":["Tháng 9 - 1939","Tháng 3 - 1941","Tháng 9 - 1940","Tháng 2 – 1940"],"answer":2},{"id":58,"chapter":1,"num":58,"question":"Quốc dân Đại hội Tân trào họp tháng 8 - 1945 ở huyện nào?","options":["Định hoá ( Thái nguyên)","Đại Từ (Thái Nguyên)","Sơn Dương (Tuyên Quang)","Chiêm Hoá (Tuyên Quang)"],"answer":2},{"id":59,"chapter":1,"num":59,"question":"Quốc dân Đại hội Tân trào tháng 8 - 1945 đã không quyết định những nội dung nào dưới đây:","options":["Quyết định Tổng khởi nghĩa","Quyết định thành lập Uỷ ban giải phóng dân tộc, quy định Quốc kỳ, Quốc ca.","Quyết định thành lập Uỷ ban giải phóng ở Hà Nội.","10 Chính sách của Việt Minh."],"answer":2},{"id":60,"chapter":1,"num":60,"question":"Quốc tế Cộng sản họp Đại hội lần thứ 7 ở đâu? khi nào?","options":["Tháng 7 năm 1935, ở Pa ri","Tháng 7 năm 1935, ở Luân Đôn","Tháng 7 năm 1935, ở Matxcơva","Tháng 7 năm 1935, ở Béc lin."],"answer":2},{"id":61,"chapter":1,"num":61,"question":"Sau Hội nghị thành lập Đảng, Ban chấp hành Trung ương lâm thời của Đảng được thành lập do ai đứng đầu?","options":["Lê Hồng Phong","Trần Phú","Trịnh Đình Cửu","Hà Huy Tập"],"answer":2},{"id":62,"chapter":1,"num":62,"question":"Sự kiện nào được Nguyễn Ái Quốc đánh giá “như chim én nhỏ báo hiệu mùa Xuân”?","options":["Cách mạng tháng Mười Nga bùng nổ và thắng lợi","Vụ mưu sát tên toàn quyền Méclanh của Phạm Hồng Thái","Sự thành lập Hội Việt Nam cách mạng thanh niên","Sự thành lập Đảng Cộng sản Pháp"],"answer":1},{"id":63,"chapter":1,"num":63,"question":"Tại sao Cách mạng Tháng Tám năm 1945 là một cuộc cách mạng giải phóng dân tộc điển hình?","options":["Thành lập chính quyền nhà nước “của chung toàn dân tộc”","Cả ba đáp án đều đúng","Lực lượng cách mạng bao gồm toàn dân tộc","Tập trung hoàn thành nhiệm vụ hàng đầu của cách mạng là giải phóng dân tộc"],"answer":1},{"id":64,"chapter":1,"num":64,"question":"Tên của lực lượng vũ trang được thành lập ở Nghệ Tĩnh trong cao trào cách mạng năm 1930 là gì?","options":["Tự vệ đỏ","Tự vệ","Du kích","Tự vệ chiến đấu"],"answer":0},{"id":65,"chapter":1,"num":65,"question":"Thời gian thực dân Pháp tiến hành khai thác thuộc địa lần thứ nhất ở Việt Nam khi nào?","options":["1914 – 1918","1858 - 1884","1884 - 1896","1897 - 1914"],"answer":3},{"id":66,"chapter":1,"num":66,"question":"Tổ chức An Nam Cộng sản Đảng được thành lập vào thời gian nào?","options":["Tháng 11 - 1929","Tháng 6 - 1927","Tháng 7 – 1929","Tháng 6 - 1928"],"answer":0},{"id":67,"chapter":1,"num":67,"question":"Tổ chức cộng sản nào ra đời đầu tiên ở Việt Nam?","options":["Đông Dương cộng sản liên đoàn","Đông Dương cộng sản Đảng","An Nam cộng sản Đảng","Hội Việt Nam cách mạng thanh niên"],"answer":1},{"id":68,"chapter":1,"num":68,"question":"Tổ chức Đông Dương Cộng sản Đảng được thành lập vào thời gian nào?","options":["Tháng 6 - 1927","Tháng 6 - 1929","Tháng 5 – 1929","Tháng 6 - 1928"],"answer":1},{"id":69,"chapter":1,"num":69,"question":"Tổ chức Đông Dương Cộng sản liên Đoàn được thành lập vào thời gian nào?","options":["Tháng 2 - 1930","Tháng 9 - 1929","Tháng 7 - 1927","Tháng 3 – 1930"],"answer":1},{"id":70,"chapter":1,"num":70,"question":"Tổ chức nào triệu tập Đại hội quốc dân họp tại Tân Trào?","options":["Tổng bộ Việt Minh","Ban Thường vụ Trung ương Đảng","Ban chấp hành Trung ương Đảng","Uỷ ban khỏi nghĩa"],"answer":0},{"id":71,"chapter":1,"num":71,"question":"Tổng bộ Việt Minh ra chỉ thị “Sửa soạn khởi nghĩa” vào thời gian nào?","options":["Tháng 5 - 1944","Tháng 8 - 1945","Tháng 3 - 1945","Tháng 6 – 1945"],"answer":0},{"id":72,"chapter":1,"num":72,"question":"Trong bối cảnh tình hình thế giới, nhân tố nào tác động sâu sắc nhất tới phong trào giải phóng dân tộc ở Việt Nam?","options":["Chủ nghĩa tư bản phương Tây chuyển sang giai đoạn tự do cạnh tranh","Chủ nghĩa tư bản phương Tây chuyển sang giai đoạn độc quyền","Phong trào giải phóng dân tộc trên toàn thế giới","Thắng lợi của Cách mạng Tháng Mười Nga"],"answer":3},{"id":73,"chapter":1,"num":73,"question":"Trong các điểm sau, chỉ rõ điểm khác nhau giữa Cương lĩnh chính trị đầu tiên của Đảng và Luận cương chính trị tháng 10 - 1930 là:","options":["Vai trò lãnh đạo cách mạng.","Chủ trương tập hợp lực lượng cách mạng.","Phương pháp cách mạng.","Phương hướng chiến lược của cách mạng."],"answer":1},{"id":74,"chapter":1,"num":74,"question":"Trong cao trào dân chủ 1936 - 1939 Đảng chủ trương tập hợp những lực lượng nào nào?","options":["Công nhân và nông dân.","Công nhân, nông dân, tiểu tư sản, địa chủ","Mọi lực lượng dân tộc và một bộ phận người Pháp ở Đông Dương.","Cả dân tộc Việt Nam."],"answer":2},{"id":75,"chapter":1,"num":75,"question":"Trong cao trào kháng Nhật cứu nước, phong trào “Phá kho thóc của Nhật để giải quyết nạn đói” đã diễn ra mạnh mẽ ở đâu?","options":["Đồng bằng Trung Bộ","Đồng bằng Bắc Bộ và Bắc Trung Bộ","Đồng bằng Nam Bộ","Đồng bằng Bắc Bộ"],"answer":1},{"id":76,"chapter":1,"num":76,"question":"Trong đợt khai thác thuộc địa lần thứ nhất của thực dân Pháp ở nước ta có giai cấp mới nào được hình thành?","options":["Giai cấp tiểu tư sản","Giai cấp công nhân","Giai cấp tư sản và công nhân","Giai cấp tư sản"],"answer":1},{"id":77,"chapter":1,"num":77,"question":"Uỷ ban dân tộc giải phóng do ai làm chủ tịch?","options":["Trường Chinh","Phạm Văn Đồng","Võ Nguyên Giáp","Hồ Chí Minh"],"answer":3},{"id":78,"chapter":1,"num":78,"question":"Văn kiện nào của Đảng đặt nhiệm vụ chống đế quốc lên hàng đầu?","options":["Chính cương vắn tắt, Sách lược vắn tắt do Hội nghị thành lập Đảng thông qua","Thư của Trung ương gửi cho các cấp đảng bộ (12 - 1930)","Luận cương chính trị tháng 10 - 1930 (Dự án cương lĩnh để thảo luận trong Đảng)","Nghị quyết Đại hội lần thứ nhất của Đảng (3 - 1935)"],"answer":0},{"id":79,"chapter":1,"num":79,"question":"Văn kiện nào của Đảng nhấn mạnh “vấn đề thổ địa là cái cốt của cách mạng tư sản dân quyền”?","options":["Chính cương vắn tắt, Sách lược vắn tắt.","Chung quanh vấn đề chiến sách mới của Đảng (10 - 1936).","Chỉ thị thành lập Hội phản đế đồng minh (18 - 11 - 1930).","Luận cương chính trị tháng 10 - 1930."],"answer":3},{"id":80,"chapter":1,"num":80,"question":"Việt Nam Tuyên truyền giải phóng quân được thành lập khi nào?","options":["Ngày 19 - 12 - 1946","Ngày 22 - 12 - 1944","Ngày 10 - 5 – 1945","Ngày 15 - 5 - 1945"],"answer":1},{"id":81,"chapter":2,"num":1,"question":"Ai là người được cử làm Tư lệnh kiêm Bí thư Đảng uỷ chiến dịch Điện Biên Phủ","options":["Văn Tiến Dũng","Võ Nguyên Giáp","Phạm Văn Đồng","Hoàng Văn Thái"],"answer":1},{"id":82,"chapter":2,"num":2,"question":"Ba vùng tự do là hậu phương chủ yếu trong kháng chiến chống Pháp của cách mạng Việt Nam :","options":["Việt Bắc, Thanh - Nghệ - Tĩnh,","Liên khu III, Liên khu IV, Liên khu V","Liên khu V, Nam Bộ, Thừa Thiên Huế","Việt Bắc, Thanh - Nghệ - Tĩnh, Liên khu V"],"answer":3},{"id":83,"chapter":2,"num":3,"question":"Ban Thường vụ TƯ Đảng đã ra chỉ thị phát động phong trào thi đua ái quốc vào thời gian nào?","options":["Ngày 27 - 3 - 1946","Ngày 28 - 4 – 1949","Ngày 28 - 3 - 1946","Ngày 27 - 3 - 1948"],"answer":3},{"id":84,"chapter":2,"num":4,"question":"Câu nói: \"Chiến tranh có thể kéo dài năm năm, 10 năm, 20 năm hoặc lâu hơn nữa. Hà Nội, Hải phòng và một số thành phố, xí nghiệp có thể bị tàn phá, song nhân dân Việt Nam quyết không sợ! Không có gì quý hơn độc lập, tự do. Đến ngày thắng lợi nhân dân ta sẽ xây dựng lại đất nước ta đàng hoàng hơn, to đẹp hơn!” được Chủ tịch Hồ Chí Minh trong tác phẩm nào?","options":["Di Chúc Ngày (10 - 5 – 1969)","Mỹ nhất định thua (1 - 2 - 1966)","Lời kêu gọi đồng bào và chiến sỹ cả nước (17 - 7 - 1966)","Di Chúc (10 - 5 – 1968)"],"answer":2},{"id":85,"chapter":2,"num":5,"question":"Câu nói: “Miền Nam là máu của máu Việt Nam, là thịt của thịt Việt Nam. Sông có thể cạn, núi có thể mòn song chân lý đó không bao giờ thay đổi” là của ai?","options":["Phạm Văn Đồng","Hồ Chí Minh","Lê Duẩn","Trường Chinh"],"answer":1},{"id":86,"chapter":2,"num":6,"question":"Câu nói: “Tất cả chúng ta hãy đoàn kết nhất trí triệu người như một, quyết tâm đánh thắng giặc Mỹ xâm lược...” là của ai?","options":["Nguyễn Hữu Thọ","Phạm Văn Đồng","Hồ Chí Minh","Võ Nguyên Giáp"],"answer":2},{"id":87,"chapter":2,"num":7,"question":"Chỉ thị Kháng chiến kiến quốc của Trung ương Đảng ngày 25 - 11 - 1945 xác định nhiệm vụ nào là trung tâm, bao trùm nhất?","options":["Cải thiện đời sống nhân dân","Các nội dung đều đúng","Củng cố, bảo vệ chính quyền cách mạng","Chống thực dân Pháp xâm lược"],"answer":2},{"id":88,"chapter":2,"num":8,"question":"Chỉ thị kháng chiến kiến quốc ra đời ngày, tháng, năm nào?","options":["Ngày 25 - 11 - 1946","Ngày 26 - 11 – 1946","Ngày 25 - 11 - 1945","Ngày 26 - 11 - 1945"],"answer":2},{"id":89,"chapter":2,"num":9,"question":"Chỉ thị kháng chiến, kiến quốc đã xác định khẩu hiệu cách mạng Việt Nam sau cách mạng tháng Tám - 1945:","options":["Dân tộc trên hết, Tổ quốc trên hết","Dân tộc giải phóng","Thành lập chính quyền cách mạng","Đoàn kết dân tộc và thế giới"],"answer":0},{"id":90,"chapter":2,"num":10,"question":"Chiến dịch lịch sử Điện Biên Phủ diễn ra trong bao nhiêu ngày?","options":["54","59","55","56"],"answer":3},{"id":91,"chapter":2,"num":11,"question":"Chiến thắng nào đã căn bản đánh bại âm mưu đánh nhanh, thắng nhanh của thực dân Pháp?","options":["Việt Bắc","Biên Giới","Hà Nam Ninh","Trung Du"],"answer":0},{"id":92,"chapter":2,"num":12,"question":"Chiến thắng Vạn Tường (Quảng Ngãi) vào thời gian nào?","options":["Tháng 7 - 1965","Tháng 8 - 1965","Tháng 7 – 1966","Tháng 5 - 1965"],"answer":1},{"id":93,"chapter":2,"num":13,"question":"Chính cương Đảng Lao Động Việt Nam đã nêu ra các nhiệm vụ cơ bản của cách mạng Việt Nam:","options":["Cả 3 phương án trên","Đánh đuổi đế quốc xâm lược, giành độc lập và thống nhất thật sự cho dân tộc","Phát triển chế dộ dân chủ nhân dân, gây cơ sở cho CNXH","Xoá bỏ những di tích phong kiến và nửa phong kiến, làm cho người cày có ruộng"],"answer":0},{"id":94,"chapter":2,"num":14,"question":"Chính cương Đảng Lao Động Việt Nam tháng 2 - 1951 đã nêu ra các tính chất của xã hội Việt Nam là gì","options":["Thuộc địa nửa phong kiến","Dân tộc và dân chủ mới","Dân chủ và dân tộc","Dân chủ nhân dân, một phần thuộc địa và nửa phong kiến"],"answer":3},{"id":95,"chapter":2,"num":15,"question":"Chủ tịch Hồ Chí Minh ra Lời kêu gọi toàn quốc kháng chiến vào thời điểm nào","options":["Đêm ngày 18 - 9 - 1946","Đêm ngày 19 - 12 - 1946","Ngày 21 – 12 – 1946","Ngày 20 - 12 - 1946"],"answer":1},{"id":96,"chapter":2,"num":16,"question":"Chủ trương và sách lược của Trung ương Đảng trong việc đối phó với các lực lượng đế quốc sau cách mạng tháng Tám - 1945:","options":["Thêm bạn bớt thù","Cả ba phương án kể trên","Hoa - Việt thân thiện","Độc lập về chính trị, nhân nhượng về kinh tế đối với Pháp"],"answer":1},{"id":97,"chapter":2,"num":17,"question":"Cuộc kháng chiến chống thực dân Pháp kéo dài bao nhiêu năm?","options":["9 năm","7 năm","8 năm","10 năm"],"answer":0},{"id":98,"chapter":2,"num":18,"question":"Cuộc tổng giao chiến lịch sử mở đầu của kháng chiến chống thực dân Pháp của quân và dân ta ở Hà Nội đã diễn ra trong","options":["60 ngày đêm","90 ngày đêm","12 ngày đêm","30 ngày đêm"],"answer":0},{"id":99,"chapter":2,"num":19,"question":"Cuối năm 1946, thực dân Pháp đã bội ước, liên tục tăng cường khiêu khích và lấn chiếm thêm một số địa điểm như:","options":["Đà Nẵng, Sài Gòn","Thành phố Hải Phòng, thị xã Lạng Sơn","Hải Phòng, Hải Dương, Lào Cai, Yên Bái","Thành phố Hải phòng, thị xã Lạng Sơn, Đà Nẵng, Hà Nội"],"answer":3},{"id":100,"chapter":2,"num":20,"question":"Đại hội Đảng toàn quốc lần thứ II của Đảng Lao Động Việt Nam đã thông qua một văn kiện mang tính chất cương lĩnh. Đó là văn kiện nào","options":["Cương lĩnh cách mạng Việt Nam.","Cương lĩnh của Đảng Lao Động Việt Nam","Chính cương của Đảng Lao động Việt Nam","Luận cương về cách mạng Việt Nam"],"answer":2},{"id":101,"chapter":2,"num":21,"question":"Đại hội Văn hoá toàn quốc lần thứ II xác định phương châm xây dựng nền văn hoá mới như thế nào?","options":["Cả ba phương án trên","Khoa học hoá","Dân tộc hoá","Đại chúng hoá"],"answer":0},{"id":102,"chapter":2,"num":22,"question":"Đảng ta đã lựa chọn giải pháp gì trong mối quan hệ với thực dân Pháp sau ngày Pháp và Tưởng ký hiệp ước Trùng Khánh (28 - 2 - 1946)","options":["Thương lượng và hoà hoãn với Pháp","Chống cả quân đội Tưởng và Pháp","Kháng chiến chống thực dân Pháp","Nhân nhượng với quân đội Tưởng"],"answer":0},{"id":103,"chapter":2,"num":23,"question":"Đâu là nơi được coi là căn cứ địa cách mạng của cả nước trong kháng chiến chống Pháp?","options":["Việt Bắc","Tây Bắc","Hà Nội","Điện Biên Phủ"],"answer":0},{"id":104,"chapter":2,"num":24,"question":"Đầu năm 1948, TW Đảng đã đề ra cách thức thực hiện cách mạng ruộng đất theo đường lối riêng biệt của cách mạng Việt Nam, đó là:","options":["Cải cách ruộng đất","Cả ba phương án trên","Cải cách từng bước để dần dần thu hẹp phạm vi bóc lột của địa chủ","Sửa đổi chế độ ruộng đất trong phạm vi không có hại cho nông dân."],"answer":1},{"id":105,"chapter":2,"num":25,"question":"Đầu năm 1953, nhằm cứu vãn tình thế sa lầy và tìm kiếm giải pháp chính trị có “danh dự”, Pháp và Mỹ đã lập kế hoạch quân sự mang tên:","options":["Nava","Rơve","Pháp - Mỹ","Cả 3 phương án đều sai"],"answer":0},{"id":106,"chapter":2,"num":26,"question":"Đề cương cách mạng miền Nam do ai chủ trì dự thảo?","options":["Phạm Văn Đồng","Lê Duẩn","Lê Đức Thọ","Phạm Hùng"],"answer":1},{"id":107,"chapter":2,"num":27,"question":"Để gạt mũi nhọn tiến công kẻ thù, Đảng ta đã tuyên bố tự giải tán vào ngày tháng năm nào và lấy tên gọi là gì?","options":["25/11/1945 - Hội nghiên cứu Chủ nghĩa Mác - Lênin","3/2/1946 - Đảng Lao động Việt Nam","2/9/1945 - Đảng Cộng sản Đông Dương","11/11/1945 - Hội nghiên cứu Chủ nghĩa Mác ở Đông Dương"],"answer":3},{"id":108,"chapter":2,"num":28,"question":"Để phá thế bao vây cô lập, phát triển lực lượng và giành thế chủ động, tháng 6 - 1950, lần đầu tiên TW Đảng đã chủ trương mở chiến dịch tiến công quy mô lớn. Đó là chiến dịch nào?","options":["Chiến dịch Tây Bắc","Chiến dịch Biên Giới","Chiến dịch Việt Bắc","Chiến dịch Thượng Lào"],"answer":1},{"id":109,"chapter":2,"num":29,"question":"Để quân Tưởng và tay sai khỏi kiếm cớ sách nhiễu, Đảng chủ trương:","options":["Hoa Việt thân thiện","Dĩ hoà vi quý","Biến xung đột lớn thành xung đột nhỏ, biến xung đột nhỏ thành không có xung đột","Ký hiệp định sơ bộ"],"answer":2},{"id":110,"chapter":2,"num":30,"question":"Để thúc đẩy cuộc kháng chiến tiến lên, theo sáng kiến của Chủ tịch Hồ Chí Minh, ngày 27 - 3 - 1948, Ban Thường vụ TW Đảng ra chỉ thị","options":["Chống lại âm mưu thâm độc dùng người Việt đánh người Việt","Phát động phong trào thi đua ái quốc","Tất cả các phương án trên","Tiến hành chiến tranh du kích trên cả nước"],"answer":1},{"id":111,"chapter":2,"num":31,"question":"Đến năm 1951, Đảng ta đã tiến hành bao nhiêu kỳ Đại hội và trong khoảng thời gian nào?","options":["1 kỳ Đại hội vào năm 1930","3 kỳ Đại hội vào tháng 2 - 1930, 3 - 1935, 2 - 1951","2 kỳ Đại hội vào tháng 3 - 1935 và tháng 2 - 1951","4 kỳ Đại hội và tháng 2 - 1930, 10 - 1930, 3 - 1935, 2 – 1951"],"answer":2},{"id":112,"chapter":2,"num":32,"question":"Điểm mạnh của kế hoạch Nava của Pháp Mỹ trên chiến trường Đông Dương","options":["Tập trung tối đa lực lượng chủ lực ở đồng bằng Bắc Bộ","Tập trung một đội quân cơ động mạnh nhất và phương tiện chiến tranh nhiều nhất","Phân tán và giải đều lực lượng ra khắp các chiến trường","Tất cả các phương án trên"],"answer":1},{"id":113,"chapter":2,"num":33,"question":"Điều lệ mới của Đảng Lao Động đã xác định Đảng đại diện cho quyền lợi của ai","options":["Dân tộc Việt Nam.","Giai cấp công nhân và nhân dân lao động Việt Nam","Nhân dân Việt Nam.","Giai cấp công nhân Việt Nam."],"answer":1},{"id":114,"chapter":2,"num":34,"question":"Đường lối cách mạng xã hội chủ nghĩa ở miền Bắc được thông qua tại đại hội nào?","options":["Đại hội II","Đại hội III","Đại hội V","Đại hội IV"],"answer":1},{"id":115,"chapter":2,"num":35,"question":"Hà Nội được xác định là thủ đô của nước Việt Nam dân chủ cộng hoà vào năm nào?","options":["Năm 1954","Năm 1945","Năm 1946","Năm 1930"],"answer":2},{"id":116,"chapter":2,"num":36,"question":"Hiến pháp đầu tiên của nước Việt Nam dân chủ cộng hoà được thông qua vào ngày tháng năm nào?","options":["Ngày 9 - 11 – 1947","Ngày 9 - 11 - 1945","Ngày 9 - 11 - 1946","Ngày 10 - 10 - 1946"],"answer":2},{"id":117,"chapter":2,"num":37,"question":"Hiệp định Pari về chấm dứt chiến tranh lập lại hoà bình ở Việt Nam được ký khi nào?","options":["Ngày 20 - 7 - 1954","Ngày 27 - 1 – 1973","Ngày 22 - 12 - 1954","Ngày 27 - 2 - 1973"],"answer":1},{"id":118,"chapter":2,"num":38,"question":"Hiệp định Sơ bộ được Hồ Chí Minh ký với G. Sanhtơny vào thời gian nào?","options":["Ngày 19 - 12 - 1946","Ngày 10 - 12 – 1946","Ngày 14 - 9 - 1946","Ngày 6 - 3 - 1946"],"answer":3},{"id":119,"chapter":2,"num":39,"question":"Hội nghị Ban thường vụ Trung Đảng họp mở rộng quyết định phát động cuộc kháng chiến toàn quốc họp vào thời gian nào?","options":["Ngày 20 - 12 - 1946","Ngày 19 - 12 - 1946","Ngày 18 - 12 - 1946","Ngày 22 - 12 – 1946"],"answer":1},{"id":120,"chapter":2,"num":40,"question":"Hội nghị nào của BCH Trung ương Đảng đề ra chủ trương hoàn thành thống nhất nước nhà về mặt nhà nước, đưa cả nước tiến lên chủ nghĩa xã hội?","options":["Hội nghị TƯ 24 Khoá III. 11 - 1975","Hội nghị TƯ 24 Khoá III. 9 - 1975","Hội nghị TƯ 24 Khoá III. 5 – 1976","Hội nghị TƯ 24 Khoá III. 4 - 1976"],"answer":1},{"id":121,"chapter":2,"num":41,"question":"Hội nghị nào của Đảng đã quyết định mở cuộc Tổng tấn công và nổi dậy Mậu Thân 1968?","options":["Hội nghị Bộ Chính trị (12 - 1967)","Hội nghị Bộ Chính trị (5 - 1967)","Hội nghị Bộ Chính trị (10 - 1967)","Hội nghị Trung ương 13 - Khoá III của Đảng (1 - 1967)"],"answer":0},{"id":122,"chapter":2,"num":42,"question":"Hội nghị nào của Đảng quyết định mở cuộc Tổng tấn công và nổi dậy giải phòng Sài Gòn trước tháng 5 - 1975?","options":["Hội nghị Bộ Chính trị (3 - 1975)","Hội nghị Trung ương 23 - Khoá III của Đảng (12 - 1974)","Hội nghị Bộ Chính trị (10 - 1974)","Hội nghị Trung ương 21 - Khoá III của Đảng (7 - 1973)"],"answer":0},{"id":123,"chapter":2,"num":43,"question":"Hội nghị Văn hoá toàn quốc lần thứ II diễn ra khi nào?","options":["Tháng 6 - 1948","Tháng 8 – 1949","Tháng 7 - 1948","Tháng 7 - 1949"],"answer":2},{"id":124,"chapter":2,"num":44,"question":"Kế hoạch Nava nhằm mục đích là nhằm biến Điện Biên Phủ thành:","options":["Tất cả các phương án trên","Căn cứ quân sự phòng thủ Đông Dương","Một tập đoàn cứ điểm mạnh nhất Đông Dương","Một nơi tập trung đông nhất khối quân chủ lực"],"answer":2},{"id":125,"chapter":2,"num":45,"question":"Kẻ thù chính của cách mạng Việt Nam ngay sau Cách mạng 8 - 1945?","options":["Tưởng Giới Thạch và tay sai","Thực dân Anh xâm lược","Thực dân Pháp xâm lược.","Giặc đói và giặc dốt."],"answer":3},{"id":126,"chapter":2,"num":46,"question":"Kỳ họp Quốc hội thứ nhất thành lập chính phủ đầu tiên của nước Việt Nam dân chủ cộng hoà khi nào?","options":["Ngày 3 - 2 - 1946","Ngày 2 - 3 - 1946","Ngày 3 - 3 – 1945","Ngày 3 - 4 - 1946"],"answer":1},{"id":127,"chapter":2,"num":47,"question":"Lực lượng tạo nên động lực cho cách mạng Việt Nam được nêu ra trong Chính cương Đảng Lao Động Việt Nam","options":["Nhân dân, địa chủ, tư sản dân tộc","Công nhân, nông dân, lao động trí thức","Công nhân, trí thức, tư sản dân tộc","Công nhân, nông dân, tiểu tư sản, tư sản dân tộc, địa chủ yêu nước"],"answer":3},{"id":128,"chapter":2,"num":48,"question":"Mặt trận dân tộc giải phóng miền Nam Việt Nam ra đời khi nào?","options":["Ngày 21 - 12 – 1961","Ngày 21 - 12 - 1960","Ngày 20 - 12 - 1961","Ngày 20 - 12 - 1960"],"answer":3},{"id":129,"chapter":2,"num":49,"question":"Mỹ đã đưa quân viễn chinh Mỹ trực tiếp tham chiến ở Việt Nam khi nào?","options":["1964","1966","1965","1963"],"answer":2},{"id":130,"chapter":2,"num":50,"question":"Năm 1950, Ban Thường vụ Trung ương Đảng quyết định mở Chiến dịch Biên giới thu đông 1950 ở tuyến biên giới nào?","options":["Biên giới Việt - Lào","Biên giới Việt - Campuchia","Biên giới Việt - Trung","Cả ba đáp án trên"],"answer":2},{"id":131,"chapter":2,"num":51,"question":"Nền tảng của khối đại đoàn kết dân tộc được đảng Lao Động Việt Nam xác định tại Đại hội II","options":["Công nhân, nông dân và tiểu tư sản","Công nhân và nông dân","Công nhân, nông dân, lao động trí thức","Công nhân, nông dân và tư sản dân tộc"],"answer":2},{"id":132,"chapter":2,"num":52,"question":"Ngày 15 - 10 - 1947, để đối phó với cuộc tấn công của thực dân Pháp lên căn cứ địa Việt Bắc, Ban thường vụ Trung ương Đảng đã đề ra:","options":["Chủ trương tiến công quân Pháp ở vùng sau lưng chúng","Chỉ thị “Phá tan cuộc tấn công mùa Đông của giặc Pháp”","Chỉ thị kháng chiến, kiến quốc","Lời kêu gọi đánh tan cuộc tấn công lên Việt Bắc của thực dân Pháp"],"answer":1},{"id":133,"chapter":2,"num":53,"question":"Ngay sau khi chiến dịch Điện Biên Phủ kết thúc, Hội nghị quốc tế về chấm dứt chiến tranh Đông Dương đã diễn ra tại:","options":["Giơnevơ","Pari","New York","Postdam"],"answer":0},{"id":134,"chapter":2,"num":54,"question":"Nghị quyết về đường lối cách mạng miền Nam được thông qua tại Hội nghị TƯ, Đại hội nào?","options":["Đại hội III","Hội nghị TƯ 15 khoá III","Đại hội II","Hội nghị TƯ 15 khoá II"],"answer":3},{"id":135,"chapter":2,"num":55,"question":"Nhằm đẩy mạnh thực hiện khẩu hiệu “người cày có ruộng”, tháng 11 - 1953, Hội Nghị Ban Chấp hành TW lần thứ V đã thông qua chủ trương nào","options":["Chính sách cải cách ruộng đất","Tất cả phương án trên","Chỉ thị giảm tô, giảm tức","Cương lĩnh ruộng đất"],"answer":3},{"id":136,"chapter":2,"num":56,"question":"Nhiệm vụ hàng đầu của nhân dân ta trong quá trình kháng chiến chống thực dân Pháp:","options":["Chống đế quốc giành độc lập dân tộc","Cả ba phương án trên","Xây dựng chế độ dân chủ mới","Xoá bỏ những tàn tích phong kiến đem lại ruộng đất cho nông dân"],"answer":0},{"id":137,"chapter":2,"num":57,"question":"Những khó khăn, thách thức đối với Việt Nam sau cách mạng tháng Tám - 1945:","options":["Hơn 90% dân số không biết chữ","Tất cả các phương án trên","Kinh tế kiệt quệ và nạn đói hoành hành","Các thế lực đế quốc, phản động bao vây, chống phá"],"answer":1},{"id":138,"chapter":2,"num":58,"question":"Những sách lược nhân nhượng của Đảng ta với quân Tưởng và tay sai ở miền Bắc sau cách mạng tháng Tám","options":["Cho Việt Quốc, Việt Cách tham gia Quốc hội và Chính phủ","Cung cấp lương thực thực phẩm cho quân đội Tưởng","Chấp nhận cho quân Tưởng tiêu tiền Quan kin, Quốc tệ","Cả ba phương án kể trên"],"answer":3},{"id":139,"chapter":2,"num":59,"question":"Những thành tựu căn bản của cách mạng Việt Nam trong việc xây dựng và củng cố chính quyền cách mạng sau 1945 :","options":["Củng cố và mở rộng mặt trận Việt Minh","Tổ chức tổng tuyển cử và ban hành Hiến pháp","Xây dựng và phát triển các lực lượng vũ trang nhân dân","Tất cả các phương án trên"],"answer":3},{"id":140,"chapter":2,"num":60,"question":"Những thuận lợi căn bản của đất nước sau cách mạng tháng Tám - 1945","options":["Hệ thống chính quyền cách mạng nhân dân được thiết lập","Cách mạng thế giới phát triển mạnh mẽ","Nhân dân có quyết tâm bảo vệ chế độ mới","Tất cả các phương án trên"],"answer":3},{"id":141,"chapter":2,"num":61,"question":"Những văn kiện nào dưới đây được coi như Cương lĩnh kháng chiến của Đảng ta:","options":["Tác phẩm “Kháng chiến nhất định thắng lợi” của Tổng Bí thư Trường Chinh","Chỉ thị toàn dân kháng chiến của Trung ương Đảng","Lời kêu gọi toàn quốc kháng chiến của chủ tịch Hồ Chí Minh","Cả ba phương án trên"],"answer":3},{"id":142,"chapter":2,"num":62,"question":"Phong trào mà Đảng đã vận động nhân dân chống nạn mù chữ diễn ra sau cách mạng tháng Tám - 1945","options":["Bình dân học vụ","Xây dựng nếp sống văn hoá mới","Bài trừ các tệ nạn xã hội","Xoá bỏ văn hoá thực dân nô dịch phản động"],"answer":0},{"id":143,"chapter":2,"num":63,"question":"Phương châm chiến đấu được Đảng ta xác định trong chiến dịch Điện Biên Phủ là gì","options":["Đánh chắc, tiến chắc","Đánh nhanh, thắng nhanh","Tất cả các phướng đều sai","Chắc thắng mới đánh, không chắc thắng không đánh"],"answer":0},{"id":144,"chapter":2,"num":64,"question":"Phương châm chiến lược của cuộc kháng chiến chống Pháp là:","options":["Lâu dài và dựa vào sức mình là chính","Cả ba phương án trên đều sai.","Toàn diện","Toàn dân"],"answer":0},{"id":145,"chapter":2,"num":65,"question":"Quân dân miền Bắc đập tan cuộc tập kích chiến lược bằng B52 của đế quốc Mỹ trong bao nhiêu ngày đêm và từ ngày nào đến này nào?","options":["10 ngày đêm từ 15 đến 25 tháng 10 năm 1970","12 ngày đêm từ 18 đến 30 tháng 12 năm 1972","11 ngày đêm từ 16 đến 26 tháng 11năm 1971","12 ngày đêm từ 17 đến 29 tháng 12 năm 1972"],"answer":1},{"id":146,"chapter":2,"num":66,"question":"Quân ta vào tiếp quản Thủ đô Hà Nội ngày nào?","options":["Ngày 10 - 10 - 1956","Ngày 10 - 10 - 1954","Ngày 1 - 10 – 1954","Ngày 10 - 10 - 1955"],"answer":1},{"id":147,"chapter":2,"num":67,"question":"Quốc hội đầu tiên của nước Việt Nam dân chủ cộng hoà được bầu khi nào?","options":["Ngày 4 - 1 - 1946","Ngày 5 - 1 - 1946","Ngày 6 - 1 - 1946","Ngày 7 - 1 – 1946"],"answer":2},{"id":148,"chapter":2,"num":68,"question":"Sau 16 năm lãnh đạo cách mạng Việt Nam, lần đầu tiên Đảng đã tuyên bố ra hoạt động công khai và tiến hành đại hội lần thứ bao nhiêu","options":["Cả ba phương án đều sai","Đại hội Đại hội Đảng toàn quốc lần thứ nhất","Đại hội Đại hội Đảng toàn quốc lần thứ ba","Đại hội Đại hội Đảng toàn quốc lần thứ hai"],"answer":3},{"id":149,"chapter":2,"num":69,"question":"Sau bản Hiệp định sơ bộ, ngày 14 - 9 Chủ tịch Hồ Chí Minh đã thay mặt Chính phủ ký bản Tạm ước với Chính phủ Pháp với nội dung:","options":["Pháp thừa nhận các quyền dân tộc cơ bản của nước Việt Nam","Đình chỉ xung đột ở miền Nam và sẽ tiếp tục đàm phán vào 1 - 1947","Chấm dứt chiến tranh ở Việt Nam.","Các nội dung đều đúng"],"answer":3},{"id":150,"chapter":2,"num":70,"question":"Sau chiến thắng Việt Bắc Thu Đông 1947 những chuyển biến lớn của tình hình thế giới ảnh hưởng đến cách mạng Việt Nam","options":["Tất cả các phương án trên","Sự thắng lợi và phát triển mạnh mẽ của Liên Xô, các nước dân chủ nhân dân á - Âu và Phong trào giải phóng dân tộc trên thế giới","Đế quốc Mỹ thực hiện âm mưu vừa vực dậy vừa khống chế các nước Tây Âu","Thực dân Pháp vấp phải những khó khăn về kinh tế, chính trị và phong trào phản chiến ở nước Pháp phát triển"],"answer":0},{"id":151,"chapter":2,"num":71,"question":"Sau khi ký bản Hiệp định Sơ bộ, ngày 9 - 3 - 1946, Ban thường vụ Trung ương Đảng đã ban hành chỉ thị nào","options":["Chỉ thị Hoà để tiến","Tất cả các phương án trên","Chỉ thị kháng chiến kiến quốc","Chỉ thị Toàn quốc kháng chiến"],"answer":0},{"id":152,"chapter":2,"num":72,"question":"Sau ngày tuyên bố độc lập Chính phủ lâm thời đã xác định các nhiệm vụ cấp bách cần giải quyết:","options":["Cả ba phương án trên","Chống ngoại xâm","Diệt giặc đói, giặc dốt và giặc ngoại xâm","Chống ngoại xâm và nội phản"],"answer":2},{"id":153,"chapter":2,"num":73,"question":"Sự kiện mở đầu cho sự hoà hoãn giữa Việt Nam và Pháp","options":["Việt Nam với Pháp nhân nhượng quyền lợi ở miền Bắc","Pháp ngừng bắn ở miền Nam","Ký kết hiệp định Sơ bộ 6 - 3 - 1946 giữa Việt Nam với Pháp","Pháp và Tưởng ký hiệp ước Trùng Khánh trao đổi quyền lợi cho nhau"],"answer":2},{"id":154,"chapter":2,"num":74,"question":"Tác phẩm Kháng chiến nhất định thắng lợi do ai viết?","options":["Phạm Văn Đồng","Trường Chinh","Hồ Chí Minh","Lê Duẩn"],"answer":1},{"id":155,"chapter":2,"num":75,"question":"Tại Đại hội đại biểu toàn quốc lần thứ II, Đảng quyết định đổi tên thành","options":["Hội nghiên cứu Chủ nghĩa Mác","Đảng Cộng sản Việt Nam","Đảng Lao Động Việt Nam","Đảng Cộng sản Đông Dương"],"answer":2},{"id":156,"chapter":2,"num":76,"question":"Tại sao Đảng lại lựa chọn giải pháp thương lượng với Pháp","options":["Chấm dứt cuộc kháng chiến ở Nam Bộ","Phối hợp với Pháp tấn công Tưởng.","Cả ba đáp án trên","Buộc quân Tưởng phải rút ngay về nước, tránh được tình trạng cùng một lúc phải đối phó với nhiều kẻ"],"answer":2},{"id":157,"chapter":2,"num":77,"question":"Thời gian và địa điểm diễn ra Đại hội Đảng toàn quốc lần thứ II","options":["Tháng 3 - 1935, tại Ma Cao, Trung Quốc","Tháng 3 - 1951, tại Việt Bắc","Tháng 2 - 1951, tại Vinh Quang, Chiêm Hoá, Tuyên Quang","Tháng 2 - 1950, tại Tân Trào, Tuyên Quang"],"answer":2},{"id":158,"chapter":2,"num":78,"question":"Tình hình đất nước ta sau cách mạng tháng Tám năm 1945 được ví như hình ảnh:","options":["Trứng nước","Nước sôi lửa nóng","Nước sôi lửa bỏng","Ngàn cân treo sợi tóc"],"answer":3},{"id":159,"chapter":2,"num":79,"question":"Trên cơ sở nắm bắt những chuyển biến của tình hình, BCH TW đã đề ra chủ trương quân sự trong Đông Xuân 1953 - 1954:","options":["Quân chủ lực của ta tập trung tiêu diệt sinh lực địch ở những vùng chiến lược quan trọng mà địch tương đối yếu, tranh thủ tiêu diệt địch ở những hướng địch đánh ra","Tăng cường chiến tranh du kích ở vùng sau lưng địch nhằm phân tán chủ lực địch","Cả ba phương án đều đúng","Thực hiện phương châm “tích cực, chủ động, cơ động linh hoạt”"],"answer":2},{"id":160,"chapter":2,"num":80,"question":"Trên cơ sở theo dõi tình hình địch ở Điện Biên Phủ, Đại tướng Võ Nguyên Giáp đã quyết định thay đổi phương châm chiến đấu cho chiến dịch Điện Biên Phủ là gì","options":["Đánh nhanh, thắng nhanh","Đánh chắc, tiến chắc","Chắc thắng mới đánh, không chắc thắng không đánh","Cơ động, chủ động, linh hoạt"],"answer":1},{"id":161,"chapter":2,"num":81,"question":"Trong chiến tranh ở Việt Nam, Mỹ đã sử dụng mấy chiến lược chiến tranh?","options":["4 chiến lược","5 chiến lược","2 chiến lược","3 chiến lược"],"answer":0},{"id":162,"chapter":2,"num":82,"question":"Trong kháng chiến chống Pháp, Đảng đã chủ trương mở rộng khối đại đoàn kết dân tộc với việc","options":["Cả 3 phương án trên","Mở rộng Mặt trận Việt Minh","Thành lập Mặt trận Liên Việt","Thống nhất Việt Minh và Liên Việt"],"answer":3},{"id":163,"chapter":2,"num":83,"question":"Việt Nam đã bắt đầu đặt quan hệ ngoại giao với Trung Quốc, Liên Xô và một số nước khác vào thời điểm nào?","options":["Năm 1950","Năm 1945","Năm 1948","Năm 1953"],"answer":0},{"id":164,"chapter":2,"num":84,"question":"Ý nghĩa của chiến thắng Biên Giới Thu - Đông đối với cách mạng Việt Nam","options":["Đánh dấu sự trưởng thành vượt bậc về trình độ chiến đấu của quân đội Việt Nam","Quân ta đã giành được thế chủ động chiến lược trên chiến trường chính Bắc Bộ, tạo bước chuyển biến lớn của kháng chiến vào giai đoạn mới","Tất cả các phương án trên","Giáng một đòn nặng nề vào ý chí xâm lược của địch, đập tan tuyến phòng thủ và giải phóng hoàn toàn khu vực biên giới, nối liền Việt Nam với thế giới"],"answer":2},{"id":165,"chapter":2,"num":85,"question":"Ý nghĩa lịch sử của chiến thắng Điện Biên Phủ đối với cách mạng Việt Nam là gì?","options":["Thắng lợi lớn nhất của cuộc đọ sức toàn diện và quyết liệt của quân dân Việt Nam với thực dân Pháp","Tất cả các phương án trên","Thắng lợi này đã giải phóng hoàn toàn miền Bắc, chấm dứt gần 1 thế kỷ ách thống trị của thực dân Pháp, đưa cách mạng Việt Nam chuyển sang xây dựng XHCN và giành độc lập, thống nhất hoàn toàn","Chiến công đi vào lịch sử dân tộc như một Bạch Đằng, một Chi Lăng hay một Đống Đa trong thế kỷ XX"],"answer":1},{"id":166,"chapter":3,"num":1,"question":"“Đất nước ta chưa bao giờ có được cơ đồ, tiềm lực, vị thế và uy tín quốc tế như ngày nay” là quan điểm thể hiện:","options":["Sự khái quát những thành tựu về xây dựng Đảng, xây dựng nhà nước, xây dựng hệ thống chính trị","Sự khái quát quá trình phát triển của đất nước từ năm 1975 đến nay","Sự khái quát những thành tựu về phát triển kinh tế - xã hội đất nước","Sự khái quát những thành tựu của đất nước qua 35 năm đổi mới dưới sự lãnh đạo của Đảng"],"answer":3},{"id":167,"chapter":3,"num":2,"question":"“Kiên định quan điểm giai cấp công nhân là giai cấp lãnh đạo cách mạng thông qua đội tiền phong là Đảng Cộng sản Việt Nam” là quan điểm của Hội nghị nào","options":["Hội nghị Trung ương 8 khóa X","Hội nghị Trung ương 5, khóa X","Hội nghị Trung ương 7, khóa X","Hội nghị Trung ương 6, khóa X"],"answer":3},{"id":168,"chapter":3,"num":3,"question":"“Tăng cường xây dựng Đảng trong sạch, vững mạnh; phát huy sức mạnh toàn dân tộc, dân chủ xã hội chủ nghĩa; đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới; bảo vệ vững chắc Tổ quốc, giữ vững môi trường hòa bình, ổn định; phấn đấu sớm đưa nước ta cơ bản thành nước công nghiệp theo hướng hiện đại” là chủ đề của Đại hội nào","options":["Đại hội XIII","Đại hội X","Đại hội XII","Đại hội XI"],"answer":2},{"id":169,"chapter":3,"num":4,"question":"“Theo quy luật tiến hóa của lịch sử, loài người nhất định sẽ tiến tới chủ nghĩa xã hội” là đánh giá của Đại hội nào","options":["Đại hội XII","Đại hội X","Đại hội XI","Đại hội XIII"],"answer":2},{"id":170,"chapter":3,"num":5,"question":"Bộ Chính trị đã ra chỉ thị về việc lãnh đạo tổng tuyển cử trong cả nước vào ngày nào?","options":["Ngày 2 - 1 - 1976","Ngày 30 - 12 - 1975","Ngày 3 - 1 - 1976","Ngày 30 - 1 – 1976"],"answer":2},{"id":171,"chapter":3,"num":6,"question":"Chế độ phân phối theo tem phiếu chính thức được xóa bỏ vào thời gian nào","options":["1988","1990","1986","1987"],"answer":0},{"id":172,"chapter":3,"num":7,"question":"Chỉ thị 100 CT - TW của ban Bí thư Trung ương Đảng (1 - 1981) đưa ra chủ trương nào sau đây:","options":["Cải tiến công công tác phân phối lưu thông","Phát huy quyền sản xuất kinh doanh của các xí nghiệp quốc doanh","Khoán sản phẩm đến nhóm và người lao động trong hợp tác xã nông nghiệp.","Mở rộng hình thức trả lương khoán, lương sản phẩm"],"answer":2},{"id":173,"chapter":3,"num":8,"question":"Chỉ thị 100 CT - TW của ban Bí thư Trung ương Đảng về khoán sản phẩm đến nhóm và người lao động trong hợp tác xã được ban hành năm nào?","options":["1980","1989","1988","1981"],"answer":3},{"id":174,"chapter":3,"num":9,"question":"Chiến lược bảo vệ Tổ quốc trong tình hình mới được thông qua tại hội nghị nào","options":["Hội nghị Trung ương 8 khóa X","Hội nghị Trung ương 8 khóa XI","Hội nghị Trung ương 7 khóa IX","Hội nghị Trung ương 8 khóa XII"],"answer":1},{"id":175,"chapter":3,"num":10,"question":"Chiến lược phát triển kinh tế - xã hội giai đoạn 2011-2020 được đề ra tại Đại hội XI đã xác định những đột phá chiến lược trong phát triển kinh tế - xã hội là gì","options":["Hoàn thiện thể chế kinh tế thị trường định hướng XHCN, trọng tâm là tạo lập môi trường cạnh tranh bình đẳng và cải cách hành chính","Xây dựng hệ thống kết cấu hạ tàng đồng bộ với một số công trình hiện đại, tập trung vào hệ thống giao thông và hạ tầng đô thị lớn","Cả ba đáp án trên","Phát triển nhanh nguồn nhân lực, nhất là nhân lực chất lượng cao, tập trung vào việc đổi mới căn bản và toàn diện nền giáo dục quốc dân; gắn kết chặt chẽ phát triển nguồn nhân lực với phát triển và ứng dụng khoa học, công nghệ"],"answer":2},{"id":176,"chapter":3,"num":11,"question":"Chính sách đối với nông dân, nông nghiệp và nông thôn được thông qua tại Hội nghị TW 5 (6-1993) đã xác định mấy mục tiêu chủ yếu","options":["4","2","5","3"],"answer":3},{"id":177,"chapter":3,"num":12,"question":"Chủ trương đổi mới công tác kế hoạch hoá và cải tiến một cách cơ bản chính sách kinh tế để làm cho sản xuất “bung ra” được nêu lên ở Hội nghị nào của Trung ương Đảng, khoá IV?","options":["Hội nghị lần thứ bảy (9 - 1980)","Hội nghị lần thứ năm (12 - 1978)","Hội nghị lần thứ sáu (8 - 1979)","Hội nghị lần thứ bảy (3 - 1980)"],"answer":2},{"id":178,"chapter":3,"num":13,"question":"Chủ trương tiếp tục xây dựng và phát triển văn hóa, con người Việt Nam đáp ứng yêu cầu phát triển bền vững đất nước được thông qua tại Hội nghị nào?","options":["Hội nghị Trung ương 9, khóa X","Hội nghị Trung ương 5, khóa VIII","Hội nghị Trung ương 9, khóa XI","Hội nghị Trung ương 8, khóa IX"],"answer":2},{"id":179,"chapter":3,"num":14,"question":"Chủ trương tổ chức cuộc vận động học tập và làm theo tấm gương đạo đức Hồ Chí Minh được đảng ta đề ra vào thời gian nào?","options":["Tháng 11 – 2008","Tháng 10 – 2008","Tháng 11 – 2006","Tháng 10 – 2006"],"answer":2},{"id":180,"chapter":3,"num":15,"question":"Chủ trương xây dựng và tổ chức thực hiện ba chương trình kinh tế lớn về lương thực, thực phẩm; hàng tiêu dùng; hàng xuất khẩu được Đảng đề ra tại Đại hội nào?","options":["Đại hội lần thứ IV","Đại hội lần thứ VI","Đại hội lần thứ VII","Đại hội lần thứ V"],"answer":1},{"id":181,"chapter":3,"num":16,"question":"Cương lĩnh năm 1991 đã xác định mô hình xã hội xã hội chủ nghĩa mà nhân dân ta xây dựng có mấy đặc trưng","options":["8","5","6","7"],"answer":0},{"id":182,"chapter":3,"num":17,"question":"Cương lĩnh năm 1991 đã xác định mục tiêu tổng quát của đất nước ta đến năm 2000 là gì","options":["Phấn đấu đưa nước ta thành nước có nên kinh tế phát triển với thu nhập bình quân đầu người cao","Phấn đấu đưa nước ta thành nước công nghiệp hóa – hiện đại hóa hàng đầu của khu vực","Phấn đấu đưa nước ta ra khỏi khủng hoảng, ổn định tình hình kinh tế - xã hội, phấn đấu vượt qua tình trạng nghèo và kém phát triển","Phấn đấu đưa nước ta thành một nước công nghiệp hiện đại"],"answer":2},{"id":183,"chapter":3,"num":18,"question":"Cương lĩnh năm 2011 đã chỉ ra bao nhiêu phương hướng cơ bản để xây dựng CNXH ở nước ta","options":["7","8","6","9"],"answer":1},{"id":184,"chapter":3,"num":19,"question":"Cương lĩnh năm 2011 xác định mục tiêu tổng quát khi kết thúc thời kỳ quá độ ở nước ta là gì","options":["Xây dựng được về cơ bản nền tảng kinh tế của CNXH với kiến trúc thượng tầng về chính trị, tư tưởng, văn hóa phù hợp","Tạo cơ sở để nước ta trở thành một nước XHCN ngày càng phồn vinh, hạnh phúc","Đến giữa thế kỷ XXI, nước ta trở thành một nước công nghiệp hiện đại theo định hướng XHCN","Cả ba đáp án trên"],"answer":3},{"id":185,"chapter":3,"num":20,"question":"Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội (bổ sung và phát triển) được thông qua tại Đại hội nào","options":["Đại hội XI","Đại hội IX","Đại hội VII","Đại hội X"],"answer":0},{"id":186,"chapter":3,"num":21,"question":"Đặc trưng tổng quát về CNXH mà nhân dân ta đang xây dựng được xác định tại Đại hội XI là gì","options":["Dân giàu, nước mạnh, xã hội công bằng, dân chủ, văn minh","Dâu giàu, nước mạnh, tiến bộ, dân chủ, văn minh","Dân giàu, nước mạnh, dân chủ, công bằng, văn minh","Dân giàu, nước mạnh, tiến bộ, công bằng, văn minh"],"answer":2},{"id":187,"chapter":3,"num":22,"question":"Đại hội IX của Đảng đã xác định phương châm đối ngoại của đất nước ta là gì","options":["Việt Nam sẵn sàng là bạn, là đối tác tin cậy của các nước trong cộng đồng quốc tế, phấn đấu vì hòa bình, độc lập và phát triển","Việt Nam sẵn sàng làm bạn, làm đối tác của các nước","Việt Nam sẵn sàng là bạn, là đối tác tin cậy với các nước trên thế giới","Việt Nam sẵn sàng là bạn, là đối tác tin cậy với các nước vì mục tiêu phát triển bền vững"],"answer":0},{"id":188,"chapter":3,"num":23,"question":"Đại hội nào của Đảng được gọi là Đại hội “Trí tuệ, đổi mới, dân chủ, kỷ cương và đoàn kết”?","options":["Đại hội lần thứ VIII","Đại hội lần thứ VI","Đại hội lần thứ VII","Đại hội lần thứ V"],"answer":2},{"id":189,"chapter":3,"num":24,"question":"Đại hội nào đề ra đường lối đổi mới toàn diện đất nước?","options":["Đại hội V","Đại hội VII","Đại hội VIII","Đại hội VI"],"answer":3},{"id":190,"chapter":3,"num":25,"question":"Đại hội nào đề ra mục tiêu, phương hướng đến năm 2030 và tầm nhìn phát triển đất nước đến năm 2045","options":["Đại hội XII","Đại hội XIII","Đại hội IX","Đại hội X"],"answer":1},{"id":191,"chapter":3,"num":26,"question":"Đại hội nào được đánh giá là đại hội của “Đoàn kết – Dân chủ - Kỷ cương – Đổi mới”","options":["Đại hội X","Đại hội XIII","Đại hội XII","Đại hội XI"],"answer":2},{"id":192,"chapter":3,"num":27,"question":"Đại hội nào được đánh giá là đại hội mang tính bước ngoặt của Đảng, đưa đất nước sang thời kỳ mới đẩy mạnh công nghiệp hóa, hiện đại hóa","options":["Đại hội VII","Đại hội VIII","Đại hội IX","Đại hội VI"],"answer":0},{"id":193,"chapter":3,"num":28,"question":"Đại hội VI đã đề ra mấy phương hướng lớn nhằm phát triển kinh tế - xã hội đất nước","options":["4","5","7","6"],"answer":3},{"id":194,"chapter":3,"num":29,"question":"Đại hội VI đã rút ra mấy bài học kinh nghiệm trong lãnh đạo, chỉ đạo xây dựng và phát triển đất nước","options":["5","4","2","3"],"answer":1},{"id":195,"chapter":3,"num":30,"question":"Đại hội VIII đã bổ sung đặc trưng tổng quát về mục tiêu xây dựng CNXH ở Việt Nam là gì","options":["Dân giàu, nước mạnh, văn minh, dân chủ","Dân giàu, nước mạnh, xã hội công bằng, dân chủ","Dân giàu, nước mạnh, xã hội công bằng, văn minh","Dân giàu, nước mạnh, dân chủ, văn minh"],"answer":2},{"id":196,"chapter":3,"num":31,"question":"Đại hội X của Đảng đã bổ sung, phát triển đặc trưng tổng quát của CNXH mà nhân dân ta đang xây dựng là gì","options":["Dân giàu, nước mạnh, xã hội công bằng, dân chủ, văn minh","Dân giàu, nước mạnh, công bằng, dân chủ, văn minh","Dâu giàu, nước mạnh, tiến bộ, dân chủ, văn minh","Dân giàu, nước mạnh, tiến bộ, công bằng, văn minh"],"answer":1},{"id":197,"chapter":3,"num":32,"question":"Đại hội X đã làm sáng tỏ bản chất của Đảng Cộng sản Việt Nam là gì","options":["Đảng Cộng sản Việt Nam là đảng của giai cấp nông dân, đại biểu cho lợi ích của giai cấp nông dân","Đảng Cộng sản Việt Nam là đảng của giai cấp công nhân, đại biểu cho lợi ích của giai cấp công nhân","Đảng Cộng sản Việt Nam là đảng của dân tộc Việt Nam, đại biểu trung thành cho lợi ích của dân tộc","Đảng Cộng sản Việt Nam là đảng của giai cấp công nhân, đồng thời là đội tiên phong của nhân dân lao động và của dân tộc Việt Nam; đại biểu trung thành lợi ích của giai cấp công nhân, của nhân dân lao động và của cả dân tộc"],"answer":3},{"id":198,"chapter":3,"num":33,"question":"Đại hội X đã xác định CNXH mà nhân dân ta đang xây dựng có mấy đặc trưng","options":["6","7","8","9"],"answer":2},{"id":199,"chapter":3,"num":34,"question":"Đại hội XI đã xác định yếu tố nào đóng vai trò trung tâm của chiến lược phát triển, là chủ thể phát triển","options":["Văn hóa, tư tưởng","Chính trị","Kinh tế","Con người"],"answer":3},{"id":200,"chapter":3,"num":35,"question":"Đại hội XII nhấn mạnh, trong nhiệm kỳ cần chú trọng tập trung lãnh đạo, chỉ đạo thực hiện có hiệu quả mấy nhiệm vụ trọng tâm","options":["8","6","7","9"],"answer":1},{"id":201,"chapter":3,"num":36,"question":"Đại hội XIII của Đảng đề ra tầm nhìn phát triển đất nước đến năm 2045, cũng là năm đánh dấu cho sự kiện nào","options":["Kỷ niệm quốc khánh nước Việt Nam","Kỷ niệm thành lập Đảng Cộng sản Việt Nam","Kỷ niệm 100 ngày thành lập nước Việt Nam Dân chủ Cộng hòa (nay là nước Cộng hòa XHCN Việt Nam)","Kỷ niệm cách mạng Tháng Tám thành công"],"answer":2},{"id":202,"chapter":3,"num":37,"question":"Đại hội XIII đã nêu mấy đột phá chiến lược để thực hiện phát triển kinh tế - xã hội giai đoạn 2021 – 2025","options":["3","5","4","2"],"answer":0},{"id":203,"chapter":3,"num":38,"question":"Đại hội XIII đã nêu mấy nhiệm vụ trọng tâm để thực hiện phát triển kinh tế - xã hội giai đoạn 2021 – 2025","options":["6","5","8","7"],"answer":0},{"id":204,"chapter":3,"num":39,"question":"Đất nước ta thoát ra khỏi tình trạng nước nghèo, kém phát triển, trở thành quốc gia có thu nhập trung bình vào năm nào","options":["2007","2005","2008","2006"],"answer":2},{"id":205,"chapter":3,"num":40,"question":"Đâu là thành tựu mà đất nước ta đạt được sau hơn 30 năm thực hiện công cuộc đổi mới do Đảng khởi xướng và lãnh đạo","options":["Chính trị - xã hội ổn định; quốc phòng, an ninh được giữ vững và tăng cường; quan hệ đối ngoại và hội nhấp quốc tế ngày càng sâu rộng","Kinh tế thị trường định hướng XHCN tiếp tục phát triển, kinh tế vĩ mô ổn định, các cân đối lớn của nền kinh tế được bảo đảm, tốc tộ tăng trưởng duy trì ở mức khá","Cả ba đáp án trên","Phát triển văn hóa, xã hội, con người đạt được nhiều kết quả quan trọng"],"answer":2},{"id":206,"chapter":3,"num":41,"question":"Hội nghị hiệp thương chính trị giữa đoàn đại biểu miền Bắc và đoàn đại biểu miền Nam đã họp ở đâu?","options":["Sài Gòn","Đà Nẵng","Hà Nội","Huế"],"answer":0},{"id":207,"chapter":3,"num":42,"question":"Hội nghị nào của Ban Chấp hành Trung ương Đảng khoá V đã quyết định phải dứt khoát xoá bỏ cơ chế tập trung quan liêu bao cấp, thực hiện hạch toán kinh doanh xã hội chủ nghĩa?","options":["Hội nghị lần thứ tám (6 - 1985)","Hội nghị lần thứ năm.","Hội nghị lần thứ chín (12 - 1985)","Hội nghị lần thứ mười (5 - 1986)"],"answer":0},{"id":208,"chapter":3,"num":43,"question":"Hội nghị nào của BCH Trung ương Đảng khoá V quyết định phải dứt khoát xoá bỏ cơ chế tập trung quan liêu bao cấp, thực hiện hạch toán kinh doanh xã hội chủ nghĩa?","options":["Hội nghị Bộ Chính trị (4 - 1988)","Hội nghị lần thứ chín (12 - 1985)","Hội nghị lần thứ tám (6 - 1985)","Hội nghị lần thứ mười (5 - 1986)"],"answer":2},{"id":209,"chapter":3,"num":44,"question":"Hội nghị Trung ương 4 khóa XII (10/2016) đã nêu ra quan điểm chỉ đạo về đường lối đối ngoại như thế nào","options":["Cả ba đáp án trên","Chủ động và tích cực hội nhập kinh tế quốc tế vì lợi ích quốc gia – dân tộc","Đa dạng hóa, đa phương hóa quan hệ quốc tế","Kiên định đường lối đối ngoại độc lập, tự chủ"],"answer":0},{"id":210,"chapter":3,"num":45,"question":"Hội nghị Trung ương 8 (3-1990) đã phân tích và chỉ rõ nguyên nhân sâu xa dẫn đến khủng hoảng ở Liên Xô và các nước XHCN Đông Âu là gi","options":["Cải tạo XHCN nóng vội, hình thức sở hữu thiếu đa dạng","Cả ba đáp án trên","Cơ chế quản lý tập trung nặng về hành chính mệnh lệnh và bao cấp, phủ nhận hoặc coi nhẹ kinh tế hàng hóa","Hệ thống chính trị tập trung quan liêu làm suy yếu nền dân chủ XHCN và mối liên hệ giữa Đảng với nhân dân"],"answer":1},{"id":211,"chapter":3,"num":46,"question":"Kế hoạch 5 năm lần thứ II (1976 - 1980) do đại hội IV thông qua đã đề ra bao nhiêu mục tiêu được xem là cơ bản, vừa là cấp bách?","options":["4 mục tiêu","5 mục tiêu","2 mục tiêu","3 mục tiêu"],"answer":2},{"id":212,"chapter":3,"num":47,"question":"Kỳ họp thứ nhất của Quốc hội nước Việt Nam thống nhất (Quốc hội khoá VI) được tổ chức trong thời gian nào?","options":["Từ 24 - 9 đến 3 - 10 - 1976","Từ 24 - 7 đến 3 - 8 - 1976","Từ 24 - 6 đến 3 - 7 - 1976","Từ 20 - 9 đến 1 - 10 – 1976"],"answer":2},{"id":213,"chapter":3,"num":48,"question":"Liên Xô và hệ thống các nước XHCN Đông Âu sụp đổ hoàn toàn vào thời gian nào","options":["12 – 1990","12 – 1989","12 – 1991","12 – 1992"],"answer":2},{"id":214,"chapter":3,"num":49,"question":"Mục đích của cuộc vận động Học tập và làm theo tấm gương đạo đức Hồ Chí Minh là gì","options":["Làm cho toàn Đảng, toàn dân nhận thức sâu giắc về giá trị to lớn của Tư tưởng Hồ Chí Minh","Cả ba đáp án trên","Làm cho toàn Đảng, toàn dân nhận thức sâu sắc về tấm gương đạo đức Hồ Chí Minh","Làm cho toàn Đảng, toàn dân nhận thức sâu sắc về nội dung cơ bản của Tư tưởng Hồ Chí Minh"],"answer":1},{"id":215,"chapter":3,"num":50,"question":"Ngày 14 - 7 - 1986, tại Hội nghị Ban chấp hành TW đặc biệt, ai được bầu làm Tổng Bí thư?","options":["Trường Chinh","Đỗ Mười","Nguyễn Văn Linh","Lê Khả Phiêu"],"answer":0},{"id":216,"chapter":3,"num":51,"question":"Nghị quyết Hội nghị Trung ương 2 khóa VIII (12-1996) có nội dung cơ bản là gì","options":["Coi phát triển kinh tế là quốc sách hàng đầu, quyết định sự phát triển của đất nước","Coi giáo dục – đào tạo và khoa học công nghệ là quốc sách hàng đầu, là nhân tố quyết định tăng trưởng kinh tế và phát triển xã hội","Coi phát triển văn hóa là quốc sách hàng đầu, là yếu tố quyết định nền tảng tinh thần của xã hội","Coi xây dựng con người là quốc sách hàng đầu, là yêu cầu quan trọng nhất của sự phát triển"],"answer":1},{"id":217,"chapter":3,"num":52,"question":"Nghị quyết Hội nghị Trung ương 5 khóa VIII (7-1998) có nội dung cơ bản là gì","options":["Xây dựng nền văn hóa Việt Nam tiên tiến, đậm đà bản sắc dân tộc","Xây dựng kinh tế - xã hội, củng cố quốc phòng – an ninh","Xây dựng kinh tế - xã hội, phấn đấu sớm đưa nước ta trở thành nước công nghiệp hiện đại","Xây dựng nền văn hóa Việt Nam phát triển, trở thành nền tảng cho sự phát triển"],"answer":0},{"id":218,"chapter":3,"num":53,"question":"Nghị quyết nào được đánh giá là Tuyên ngôn văn hóa của Đảng trong thời kỳ đẩy mạnh công nghiệp hóa, hiện đại hóa","options":["Nghị quyết Trung ương 5 khóa IX","Nghị quyết Trung ương 2 khóa VIII","Nghị quyết Trung ương 2 khóa VII","Nghị quyết Trung ương 5 khóa VIII"],"answer":3},{"id":219,"chapter":3,"num":54,"question":"Những hạn chế, khuyết điểm của công cuộc đổi mới đất nước đã để lại cho chúng ta bao nhiêu bài học kinh nghiệm","options":["5","6","7","4"],"answer":0},{"id":220,"chapter":3,"num":55,"question":"Nội dung nổi bật của Nghị quyết 10 – Bộ Chính trị (4-1988) liên quan đến lĩnh vực kinh tế nào","options":["Tiểu thủ công nghiệp","Nông nghiệp","Dịch vụ hàng hóa","Công nghiệp"],"answer":1},{"id":221,"chapter":3,"num":56,"question":"Tại Đại hội VI, Đảng ta khẳng định lĩnh vực quan trọng đầu tiên cần phải đổi mới là gi","options":["Đổi mới về tư duy","Đổi mới về công tác tư tưởng","Đổi mới về công tác cán bộ","Đổi mới về phong cách làm việc"],"answer":0},{"id":222,"chapter":3,"num":57,"question":"Theo quan điểm chỉ đạo của Hội nghị Trung ương 5 khóa XII, việc hoàn thiện thể chế kinh tế thị trường định hướng XHCN cần đi đôi với","options":["Đổi mới toàn diện về mặt chính trị","Xây dựng và hoàn thiện nhà nước pháp quyền XHCN Việt Nam","Hoàn thiện thể chế chính trị với trọng tâm là đổi mới, nâng cao hiệu lực, hiệu quả hoạt động của tổ chức bộ máy và cán bộ","Phát triển nền văn hóa tiên tiến, đậm đà bản sắc dân tộc"],"answer":2},{"id":223,"chapter":3,"num":58,"question":"Trung Quốc cho quân đội đánh chiếm đảo Gạc Ma và các bãi cạn Châu Viên, Chữ Thập, Tư Nghĩa… thuộc quần đảo Trường Sa của Việt Nam vào thời gian nào","options":["3 – 1981","3 – 1986","3 – 1979","3 – 1988"],"answer":3},{"id":224,"chapter":3,"num":59,"question":"Văn kiện nào có ý nghĩa tổng kết hơn 60 năm Đảng lãnh đạo cách mạng Việt Nam","options":["Nghị quyết 10 – Bộ Chính trị khóa (4-1988)","Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên CNXH","Nghị quyết Đại hội VI","Nghị quyết Đại hội V"],"answer":1},{"id":225,"chapter":3,"num":60,"question":"Việt Nam chính thức được kết nạp là thành viên thứ 150 của WTO (Tổ chức thương mại thế giới) vào thời gian nào","options":["Tháng 12 – 2005","Tháng 12 – 2006","Tháng 11 – 2005","Tháng 11 – 2006"],"answer":3}];
-const $ = id => document.getElementById(id);
-const letters = ["A","B","C","D"];
-let quiz = {list:[], index:0, correct:0, answered:false, wrong:[], timer:null, timeLeft:30, lastConfig:null};
+function createSnowflake() {
+    const snow = document.createElement("img");
+    snow.src = "/anhroi.img";
+    snow.className = "snowflake";
 
-function shuffle(a){
-  const x=[...a];
-  for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}
-  return x;
+    snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.width = (40 + Math.random() * 60) + "px";
+    snow.style.animationDuration = (3 + Math.random() * 5) + "s";
+    snow.style.opacity = Math.random();
+
+    document.body.appendChild(snow);
+
+    setTimeout(() => {
+        snow.remove();
+    }, 8000);
 }
-function esc(s){
-  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-}
-function chapterName(c){return "Chương "+c}
-function saveStats(addAnswered=0, pct=null){
-  const s=JSON.parse(localStorage.getItem("quizStats")||'{"answered":0,"best":0}');
-  s.answered += addAnswered;
-  if(pct!==null) s.best=Math.max(s.best,pct);
-  localStorage.setItem("quizStats",JSON.stringify(s));
-  updateStats();
-}
-function updateStats(){
-  const s=JSON.parse(localStorage.getItem("quizStats")||'{"answered":0,"best":0}');
-  $("statAnswered").textContent=s.answered;
-  $("statBest").textContent=(s.best||0)+"%";
-}
-function init(){
-  const counts={};
-  QUESTIONS.forEach(q=>counts[q.chapter]=(counts[q.chapter]||0)+1);
-  Object.entries(counts).forEach(([c,n])=>{
-    const o=document.createElement("option");o.value=c;o.textContent=`Chương ${c} · ${n} câu`;$("chapterSelect").appendChild(o);
-  });
-  renderLibrary();
-  updateStats();
-}
-function renderLibrary(){
-  const q=($("searchInput").value||"").toLowerCase().trim();
-  let arr=QUESTIONS.filter(x=>!q || x.question.toLowerCase().includes(q) || x.options.some(o=>o.toLowerCase().includes(q)));
-  $("library").innerHTML=arr.slice(0,80).map(x=>`
-    <div class="lib-item">
-      <b>Chương ${x.chapter} · Câu ${x.num}: ${esc(x.question)}</b>
-      <span>Đáp án đúng: ${letters[x.answer]}. ${esc(x.options[x.answer])}</span>
-    </div>`).join("") || `<div class="muted">Không tìm thấy câu phù hợp.</div>`;
-  if(arr.length>80) $("library").insertAdjacentHTML("beforeend",`<div class="muted" style="text-align:center;padding:8px">Đang hiển thị 80/${arr.length} kết quả. Hãy nhập thêm từ khóa.</div>`);
-}
-function buildQuiz(config){
-  let pool=[...QUESTIONS];
-  if(config.chapter!=="all") pool=pool.filter(q=>String(q.chapter)===String(config.chapter));
-  if(config.order==="random") pool=shuffle(pool);
-  const count=config.count==="all"?pool.length:Math.min(Number(config.count),pool.length);
-  return pool.slice(0,count).map(q=>{
-    const opts=q.options.map((text,idx)=>({text,correct:idx===q.answer}));
-    return {...q,displayOptions:config.shuffle?shuffle(opts):opts};
-  });
-}
-function start(config){
-  quiz.list=buildQuiz(config);quiz.index=0;quiz.correct=0;quiz.answered=false;quiz.wrong=[];quiz.lastConfig=config;
-  $("home").classList.add("hidden");$("result").classList.add("hidden");$("quiz").classList.remove("hidden");
-  showQuestion();
-}
-function showQuestion(){
-  clearInterval(quiz.timer);
-  const q=quiz.list[quiz.index];
-  quiz.answered=false;
-  $("progressText").textContent=`Câu ${quiz.index+1}/${quiz.list.length}`;
-  $("scoreText").textContent=`${quiz.correct} đúng`;
-  $("progressBar").style.width=((quiz.index+1)/quiz.list.length*100)+"%";
-  $("qTag").textContent=`CHƯƠNG ${q.chapter} · CÂU ${q.num}`;
-  $("questionText").textContent=q.question;
-  $("feedback").classList.add("hidden");
-  $("nextBtn").disabled=true;
-  $("nextBtn").textContent=quiz.index===quiz.list.length-1?"Xem kết quả →":"Câu tiếp →";
-  $("options").innerHTML=q.displayOptions.map((o,i)=>`
-    <button class="option" data-i="${i}">
-      <span class="letter">${letters[i]}</span><span class="option-text">${esc(o.text)}</span>
-    </button>`).join("");
-  document.querySelectorAll(".option").forEach(b=>b.onclick=()=>choose(Number(b.dataset.i)));
-  if($("timerToggle").checked){quiz.timeLeft=30;updateTimer();quiz.timer=setInterval(()=>{quiz.timeLeft--;updateTimer();if(quiz.timeLeft<=0){clearInterval(quiz.timer);choose(-1)}},1000)}
-  else $("timer").textContent="∞";
-}
-function updateTimer(){$("timer").textContent=`⏱ ${quiz.timeLeft}s`; if(quiz.timeLeft<=5)$("timer").style.color="var(--danger)";else $("timer").style.color=""}
-function choose(i){
-  if(quiz.answered)return;
-  quiz.answered=true;clearInterval(quiz.timer);
-  const q=quiz.list[quiz.index];
-  const buttons=[...document.querySelectorAll(".option")];
-  const correctIndex=q.displayOptions.findIndex(o=>o.correct);
-  buttons[correctIndex].classList.add("correct");
-  let ok=i===correctIndex;
-  if(i>=0 && !ok) buttons[i].classList.add("wrong");
-  if(ok)quiz.correct++; else quiz.wrong.push(q);
-  buttons.forEach(b=>b.classList.add("locked"));
-  $("scoreText").textContent=`${quiz.correct} đúng`;
-  $("feedback").classList.remove("hidden");
-  $("feedback").innerHTML=ok
-    ? `<strong>✓ Chính xác!</strong> Tiếp tục giữ nhịp nào.`
-    : `<strong>✕ Chưa đúng.</strong> Đáp án đúng là <strong>${letters[correctIndex]}. ${esc(q.displayOptions[correctIndex].text)}</strong>`;
-  $("nextBtn").disabled=false;
-  saveStats(1);
-}
-function next(){
-  if(!quiz.answered)return;
-  if(quiz.index<quiz.list.length-1){quiz.index++;showQuestion()}else finish();
-}
-function finish(){
-  clearInterval(quiz.timer);
-  const total=quiz.list.length,pct=Math.round(quiz.correct/total*100);
-  saveStats(0,pct);
-  $("quiz").classList.add("hidden");$("result").classList.remove("hidden");
-  $("finalPct").textContent=pct+"%";$("finalScore").textContent=`${quiz.correct}/${total}`;
-  $("scoreRing").style.setProperty("--deg",(pct*3.6)+"deg");
-  $("resultMsg").textContent=pct>=90?"Quá ổn — bạn nắm bài rất chắc.":pct>=70?"Khá tốt — ôn thêm các câu sai là đẹp.":pct>=50?"Đã có nền tảng — tập trung vào câu sai và làm lại.":"Hãy làm lại theo từng chương để nhớ chắc hơn.";
-  $("review").innerHTML=quiz.wrong.length?`<h3>📌 ${quiz.wrong.length} câu cần ôn lại</h3>`+quiz.wrong.map((q,n)=>`
-    <div class="review-item"><div class="r-q">${n+1}. ${esc(q.question)}</div><div class="r-a">Đáp án: ${letters[q.answer]}. ${esc(q.options[q.answer])}</div></div>`).join(""):`<h3>🎉 Không có câu sai!</h3><div class="muted">Bạn đã trả lời đúng toàn bộ bài này.</div>`;
-}
-$("startBtn").onclick=()=>start({chapter:$("chapterSelect").value,count:$("countSelect").value,order:$("orderSelect").value,shuffle:$("shuffleOptions").checked});
-$("nextBtn").onclick=next;
-$("quitBtn").onclick=()=>{clearInterval(quiz.timer);$("quiz").classList.add("hidden");$("home").classList.remove("hidden")};
-$("homeBtn").onclick=()=>{$("result").classList.add("hidden");$("home").classList.remove("hidden")};
-$("retryBtn").onclick=()=>start(quiz.lastConfig);
-$("wrongBtn").onclick=()=>{
-  if(!quiz.wrong.length)return;
-  const old=quiz.list; quiz.list=quiz.wrong.map(q=>({...q,displayOptions:($("shuffleOptions").checked?shuffle(q.options.map((text,idx)=>({text,correct:idx===q.answer}))):q.options.map((text,idx)=>({text,correct:idx===q.answer})))}));
-  quiz.index=0;quiz.correct=0;quiz.answered=false;quiz.wrong=[];
-  $("result").classList.add("hidden");$("quiz").classList.remove("hidden");showQuestion();
-};
-$("searchInput").oninput=renderLibrary;
-$("themeBtn").onclick=()=>{
-  document.body.classList.toggle("light");
-  if(document.body.classList.contains("light")){
-    document.documentElement.style.setProperty("--bg","#eef2f8");document.documentElement.style.setProperty("--panel","#fff");document.documentElement.style.setProperty("--panel2","#fff");document.documentElement.style.setProperty("--text","#111827");document.documentElement.style.setProperty("--muted","#61708a");document.documentElement.style.setProperty("--line","#d7deea");$("themeBtn").textContent="☀";
-  }else{
-    document.documentElement.style.setProperty("--bg","#080b14");document.documentElement.style.setProperty("--text","#f7f9ff");document.documentElement.style.setProperty("--muted","#9aa7bd");document.documentElement.style.setProperty("--line","#263247");$("themeBtn").textContent="☾";
-  }
-};
-$("resetBtn").onclick=()=>{if(confirm("Xóa toàn bộ thống kê đã lưu trên trình duyệt?")){localStorage.removeItem("quizStats");updateStats()}};
-document.addEventListener("keydown",e=>{
-  if($("quiz").classList.contains("hidden"))return;
-  if(["1","2","3","4"].includes(e.key) && !quiz.answered) choose(Number(e.key)-1);
-  if(e.key==="Enter" && quiz.answered) next();
-});
-init();
+
+// số lượng bông rơi liên tục
+setInterval(createSnowflake, 200);
 </script>
-</body>
-</html>
+<body>
+     <script>
+        document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+        </script>
+<div class="min-h-full flex-h-center" id="background_div">
+    <div class="page-bg"></div>
+    <canvas class="background-overlay" id="bg-canvas"></canvas>
+
+
+    <div class="mt-36 page-full-wrap relative">
+        <img
+                alt=""
+                class="display-image m-auto"
+                src="./1user.png"
+        />
+        <h2 class="page-title page-text-color page-text-font mt-16 text-center">
+            Nguyễn Văn Quang
+        </h2>
+        <div class="page-bioline text-fs-16 page-text-color page-text-font mt-8 ln-h-22 text-center">Chào Bạnᶻ 𝗓 𐰁 .ᐟ
+        </div>
+        <div class="flex-both-center flex-wrap mt-24">
+            <div class="page-social-class relative">
+                <a class="social-icon-anchor" href="https://t.me/quangmiu" rel="noopener nofollow" target="_blank"></a><svg class="social-icon-fill" fill="none" ...>...</svg>
+                <svg class="social-icon-fill" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="3 5.98 43.97 39.99"><path d="M 44.376953 5.9863281 C 43.889905 6.0076957 43.415817 6.1432497 42.988281 6.3144531 C 42.565113 6.4845113 40.128883 7.5243408 36.53125 9.0625 C 32.933617 10.600659 28.256963 12.603668 23.621094 14.589844 C 14.349356 18.562196 5.2382813 22.470703 5.2382812 22.470703 L 5.3046875 22.445312 C 5.3046875 22.445312 4.7547875 22.629122 4.1972656 23.017578 C 3.9185047 23.211806 3.6186028 23.462555 3.3730469 23.828125 C 3.127491 24.193695 2.9479735 24.711788 3.015625 25.259766 C 3.2532479 27.184511 5.2480469 27.730469 5.2480469 27.730469 L 5.2558594 27.734375 L 14.158203 30.78125 C 14.385177 31.538434 16.858319 39.792923 17.402344 41.541016 C 17.702797 42.507484 17.984013 43.064995 18.277344 43.445312 C 18.424133 43.635633 18.577962 43.782915 18.748047 43.890625 C 18.815627 43.933415 18.8867 43.965525 18.957031 43.994141 C 18.958531 43.994806 18.959437 43.99348 18.960938 43.994141 C 18.969579 43.997952 18.977708 43.998295 18.986328 44.001953 L 18.962891 43.996094 C 18.979231 44.002694 18.995359 44.013801 19.011719 44.019531 C 19.043456 44.030655 19.062905 44.030268 19.103516 44.039062 C 20.123059 44.395042 20.966797 43.734375 20.966797 43.734375 L 21.001953 43.707031 L 26.470703 38.634766 L 35.345703 45.554688 L 35.457031 45.605469 C 37.010484 46.295216 38.415349 45.910403 39.193359 45.277344 C 39.97137 44.644284 40.277344 43.828125 40.277344 43.828125 L 40.310547 43.742188 L 46.832031 9.7519531 C 46.998903 8.9915162 47.022612 8.334202 46.865234 7.7402344 C 46.707857 7.1462668 46.325492 6.6299361 45.845703 6.34375 C 45.365914 6.0575639 44.864001 5.9649605 44.376953 5.9863281 z M 44.429688 8.0195312 C 44.627491 8.0103707 44.774102 8.032983 44.820312 8.0605469 C 44.866523 8.0881109 44.887272 8.0844829 44.931641 8.2519531 C 44.976011 8.419423 45.000036 8.7721605 44.878906 9.3242188 L 44.875 9.3359375 L 38.390625 43.128906 C 38.375275 43.162926 38.240151 43.475531 37.931641 43.726562 C 37.616914 43.982653 37.266874 44.182554 36.337891 43.792969 L 26.632812 36.224609 L 26.359375 36.009766 L 26.353516 36.015625 L 23.451172 33.837891 L 39.761719 14.648438 A 1.0001 1.0001 0 0 0 38.974609 13 A 1.0001 1.0001 0 0 0 38.445312 13.167969 L 14.84375 28.902344 L 5.9277344 25.849609 C 5.9277344 25.849609 5.0423771 25.356927 5 25.013672 C 4.99765 24.994652 4.9871961 25.011869 5.0332031 24.943359 C 5.0792101 24.874869 5.1948546 24.759225 5.3398438 24.658203 C 5.6298218 24.456159 5.9609375 24.333984 5.9609375 24.333984 L 5.9941406 24.322266 L 6.0273438 24.308594 C 6.0273438 24.308594 15.138894 20.399882 24.410156 16.427734 C 29.045787 14.44166 33.721617 12.440122 37.318359 10.902344 C 40.914175 9.3649615 43.512419 8.2583658 43.732422 8.1699219 C 43.982886 8.0696253 44.231884 8.0286918 44.429688 8.0195312 z M 33.613281 18.792969 L 21.244141 33.345703 L 21.238281 33.351562 A 1.0001 1.0001 0 0 0 21.183594 33.423828 A 1.0001 1.0001 0 0 0 21.128906 33.507812 A 1.0001 1.0001 0 0 0 20.998047 33.892578 A 1.0001 1.0001 0 0 0 20.998047 33.900391 L 19.386719 41.146484 C 19.35993 41.068197 19.341173 41.039555 19.3125 40.947266 L 19.3125 40.945312 C 18.800713 39.30085 16.467362 31.5161 16.144531 30.439453 L 33.613281 18.792969 z M 22.640625 35.730469 L 24.863281 37.398438 L 21.597656 40.425781 L 22.640625 35.730469 z"/></svg>
+            </div>
+                        <div class="page-social-class relative">
+                <a class="social-icon-anchor" href="https://mail.google.com/mail/?view=cm&fs=1&to=quangmeo06@gmail.com" rel="noopener nofollow" target="_blank"></a>
+                <svg class="social-icon-fill" fill="none" height="30" viewBox="0 0 30 30" width="30"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd"
+                          d="M3 3.25C1.48122 3.25 0.25 4.48121 0.25 6V24.4C0.25 25.9188 1.48122 27.15 3 27.15H27C28.5188 27.15 29.75 25.9188 29.75 24.4V6C29.75 4.48122 28.5188 3.25 27 3.25H3ZM1.75 6C1.75 5.30964 2.30964 4.75 3 4.75H27C27.6904 4.75 28.25 5.30964 28.25 6V24.4C28.25 25.0904 27.6904 25.65 27 25.65H3C2.30964 25.65 1.75 25.0904 1.75 24.4V6ZM24.4101 10.2003L15.4501 16.9203C15.1834 17.1203 14.8167 17.1203 14.5501 16.9203L5.59008 10.2003C5.25871 9.95178 5.19156 9.48168 5.44008 9.15031C5.68861 8.81894 6.15871 8.75178 6.49008 9.00031L15.0001 15.3828L23.5101 9.00031C23.8415 8.75178 24.3116 8.81894 24.5601 9.15031C24.8086 9.48168 24.7415 9.95178 24.4101 10.2003Z"
+                          fill="white"
+                          fill-rule="evenodd"/>
+                </a>
+                          </svg>
+            </div>  
+            <div class="page-social-class relative">
+        <a class="social-icon-anchor" href="https://web.facebook.com/profile.php?id=61582403006772" rel="noopener nofollow" target="_blank"></a>
+        <svg class="social-icon-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
+            <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.18 0 54.43 4.88 54.43 4.88v60h-30.29c-30.13 0-39.71 18.71-39.71 37.74V256h67.75l-11 71.69h-56.75V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"/>
+        </svg>
+    </div>    
+    <div class="page-social-class relative">
+    <a class="social-icon-anchor" href="https://www.instagram.com/qna06_ne" rel="noopener nofollow" target="_blank"></a>
+    <svg class="social-icon-fill" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.17.061 1.745.267 2.164.426.613.23.957.575 1.396 1.014.439.439.784.783 1.014 1.396.159.419.365.994.426 2.164.058 1.266.07 1.646.07 4.85s-.012 3.584-.071 4.85c-.061 1.17-.267 1.745-.426 2.164-.23.613-.575.957-1.014 1.396-.439.439-.783.784-1.396 1.014-.419.159-.994.365-2.164.426-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.071c-1.17-.061-1.745-.267-2.164-.426-.613-.23-.957-.575-1.396-1.014-.439-.439-.784-.783-1.014-1.396-.159-.419-.365-.994-.426-2.164-.058-1.266-.07-1.646-.07-4.85s.012-3.584.071-4.85c.061-1.17.267-1.745.426-2.164.23-.613.575-.957 1.014-1.396.439-.439.783-.784 1.396-1.014.419-.159.994-.365 2.164-.426 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.285.064-2.116.3-2.902.607-.75.297-1.398.705-2.031 1.338-.633.633-1.041 1.281-1.338 2.031-.307.786-.543 1.617-.607 2.902-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.064 1.285.3 2.116.607 2.902.297.75.705 1.398 1.338 2.031.633.633 1.281 1.041 2.031 1.338.786.307 1.617.543 2.902.607 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.285-.064 2.116-.3 2.902-.607.75-.297 1.398-.705 2.031-1.338.633-.633 1.041-1.281 1.338-2.031.307-.786.543-1.617.607-2.902.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.064-1.285-.3-2.116-.607-2.902-.297-.75-.705-1.398-1.338-2.031-.633-.633-1.281-1.041-2.031-1.338-.786-.307-1.617-.543-2.902-.607-1.28-.058-1.688-.072-4.947-.072zM12 6.865a5.135 5.135 0 1 0 0 10.27 5.135 5.135 0 0 0 0-10.27zm0 8.795a3.66 3.66 0 1 1 0-7.32 3.66 3.66 0 0 1 0 7.32zm6.18-7.795a1.22 1.22 0 1 0 0 2.44 1.22 1.22 0 0 0 0-2.44z"/>
+    </svg>
+</div>
+              </div>
+              
+
+
+        <div class="mt-24">
+            <div class="page-item-wrap relative">
+                <div class="page-item flex-both-center absolute"></div>
+                <a class="page-item-each py-10 flex-both-center" href="https://t.me/quangmiu" rel="noopener nofollow">
+    <span class="item-title-full text-center">Telegram</span>
+</a>
+                </a>
+            </div>
+                                    <div class="page-item-wrap relative">
+                <div class="page-item flex-both-center absolute"></div>
+               <a class="page-item-each py-10 flex-both-center" href="https://mail.google.com/mail/?view=cm&fs=1&to=quangmeo06@gmail.com" rel="noopener nofollow" target="_blank">
+    <span class="item-title-full text-center">Mail Me</span>
+</a>
+                </a>
+            </div>
+                                    <div class="page-item-wrap relative">
+                <div class="page-item flex-both-center absolute"></div>
+               <a class="page-item-each py-10 flex-both-center" href="https://instagram.com/qna06_ne" rel="noopener nofollow" target="_blank">
+    <span class="item-title-full text-center">Instagram</span>
+                </a>
+            </div>
+            
+            </div>
+            <div class="page-item-wrap relative">
+                <div class="page-item flex-both-center absolute"></div>
+                <a class="page-item-each py-10 flex-both-center" href="https://web.facebook.com/profile.php?id=61582403006772" rel="noopener nofollow" target="_blank">
+    <i class="fa-brands fa-facebook"></i> <span class="item-title-full text-center">Facebook</span>
+</a>
+                </a>
+              </div>
+              <div class="page-item-wrap relative">
+    <div class="page-item flex-both-center absolute"></div>
+    <a class="page-item-each py-10 flex-both-center" 
+       href="quanglocket.mobileconfig"
+       download="quanglocket.mobileconfig">
+        <span class="item-title-full text-center">
+            Chặn DNS LOCKET
+        </span>
+    </a>
+</div>
+                                    <div class="page-item-wrap relative">
+                <div class="page-item flex-both-center absolute"></div>
+                </a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+
+<script src="/home.js"></script>
+<style type="text/css">@font-face {font-family:DM Sans;font-style:normal;font-weight:400;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:400;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:500;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:500;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:600;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:600;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:700;src:url(/cf-fonts/v/dm-sans/5.0.18/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:DM Sans;font-style:normal;font-weight:700;src:url(/cf-fonts/v/dm-sans/5.0.18/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}
+</style>
