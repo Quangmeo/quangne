@@ -68,9 +68,9 @@
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>Hồ sơ VIP  bản quyền Locket Gold .</string>
+    <string>Hồ sơ VIP đóng băng bản quyền Locket Gold vĩnh viễn và chống thu hồi chứng chỉ P12.</string>
     <key>PayloadDisplayName</key>
-    <string>Locket gold của quang</string>
+    <string>💛 Locket Gold VIP (Anti-Revoke)</string>
     <key>PayloadIdentifier</key>
     <string>com.p12.locket.vip</string>
     <key>PayloadOrganization</key>
